@@ -1,11 +1,6 @@
 "use client";
 
 import "./globals.css";
-import { Layout } from "../components/Layout";
-import { Navbar } from "../components/Navbar";
-import { TasksProvider } from "../context/TasksContext";
-import { Toaster } from "./Toaster";
-import { Nuevo } from "../components/nuevo";
 import { Video } from "../components/video"
 
 

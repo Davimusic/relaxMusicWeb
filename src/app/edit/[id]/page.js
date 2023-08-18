@@ -1,3 +1,3 @@
-import newPageForm from "../../new/page";
+//import newPageForm from "../../new/page";
 
-export default newPageForm;
+//export default newPageForm;

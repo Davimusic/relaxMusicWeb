@@ -4,9 +4,9 @@ import "./globals.css";
 import { Video } from "../components/video"
 
 
-export const metadata = {
+/*export const metadata = {
   title: "Tasks App",
-};
+};*/
 
 export default function RootLayout({ children }) {
 

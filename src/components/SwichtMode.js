@@ -1,33 +1,26 @@
 "use client"
 import '../estilos/swichMode.css'
+import '../app/globals.css'
+import { paletaDeColores } from '@/funciones/PaletaDeColores'
+import { variablesGlobales } from '@/funciones/VariablesGlobales';
+import { actulizarColorFondoContenido } from '@/funciones/ActualizarColorFondoContenido';
 
 
-let estadoSwicthMode = 0
 const switchMode = ({id}) => {
 
     function screenMode(){
-        const color1 = document.querySelectorAll(".color1");
-        const colorLetra1 = document.querySelectorAll('.colorLetra1')
-        let colorFondo = '', colorLetra = ''
-        if(estadoSwicthMode == 0){
-            estadoSwicthMode = 1
-            colorFondo = 'black'
-            colorLetra = 'white'
+        if(variablesGlobales().getModoPantalla() == 'oscuro'){
+            variablesGlobales().setModoPantalla('light') 
+            paletaDeColores().actualizarBackground('.color1', '#051f34')
+            paletaDeColores().actualizarColor('.colorLetra1', 'white')
+            paletaDeColores().actualizarBackground('.color2', '#027495')
         } else {
-            estadoSwicthMode = 0
-            colorFondo = 'white'
-            colorLetra = 'black'
+            variablesGlobales().setModoPantalla('oscuro')
+            paletaDeColores().actualizarBackground('.color1', 'white')
+            paletaDeColores().actualizarColor('.colorLetra1', '#027495')
+            paletaDeColores().actualizarBackground('.color2', '#f4f5f5')
         }
-        color1.forEach(elemento => {
-            elemento.style.transition= '1s';
-            elemento.style.backgroundColor = colorFondo;
-        });
-        colorLetra1.forEach(elemento => {
-            elemento.style.transition= '1s';
-            elemento.style.color = colorLetra;
-        });
-
-        
+        actulizarColorFondoContenido()
     }
 
     return (

@@ -2,6 +2,7 @@ let coor = 0;
 let reproducir = 'no';
 let intervaloSubir;
 let estado = 'audioActual';
+let modoPantalla = 'oscuro'
 
 export function variablesGlobales() {
 
@@ -37,6 +38,14 @@ export function variablesGlobales() {
         estado = newEstado;
     }
 
+    function getModoPantalla() {
+        return modoPantalla;
+    }
+
+    function setModoPantalla(newModoPantalla) {
+        modoPantalla = newModoPantalla;
+    }
+
     return {
         getCoor,
         setCoor,
@@ -45,7 +54,9 @@ export function variablesGlobales() {
         getIntervaloSubir,
         setIntervaloSubir,
         getEstado,
-        setEstado
+        setEstado,
+        getModoPantalla,
+        setModoPantalla
     };
 }
 

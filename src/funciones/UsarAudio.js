@@ -1,8 +1,8 @@
 import { reproducirAudio } from "./ReproducirAudio";
 import {arrePadre} from './RetornarInfoAudios'
-import {actualizarColorFondo} from './ActualizarColorFondo'
 import { audioToast } from "./AudioToast";
 import { variablesGlobales } from "./VariablesGlobales";
+import { actulizarColorFondoContenido } from "./ActualizarColorFondoContenido";
 
 
 export function usarAudio(i, d) {
@@ -49,9 +49,10 @@ export function usarAudio(i, d) {
 
     clearInterval(variablesGlobales().getIntervaloSubir()); // Detener el intervalo anterior
     variablesGlobales().setIntervaloSubir(setInterval(subir, 1000))  // Crear un nuevo intervalo
-    actualizarColorFondo('secAudio', variablesGlobales().getCoor(), '#00000052', '#083fa78f', arreAudiosPadre.length);
-    actualizarColorFondo('botonRepro', d, '#06ec98', '#ffffff', 5)
-
+    
+    actulizarColorFondoContenido()
+    
+    
     function subir(){
         let audio = document.getElementById('audioRep')
         //console.log(audio.currentTime)

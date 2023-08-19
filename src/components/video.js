@@ -11,15 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export function Video(){
     return(
-        <div>
+        <div style={{position: 'relative'}}>
             <ToastContainer />
             <div style={{display: 'flex'}}>
-                <div style={{width: '40vh', padding: '10px', background: 'blue'}} className='mirar'>  
-                    <Menu />
-                </div>
+                <Menu />
                 {ElementoAudio()} 
             </div>
-            <div>  
+            <div> 
+                <div className="linea-horizontal"></div> 
                 <div style={{display: 'flex'}} className='espacioEquilatero'>
                     <RangeInput id='input'/>
                 </div>       

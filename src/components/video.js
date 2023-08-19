@@ -9,6 +9,7 @@ import { ElementoAudio } from './ElementoAudio';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 export function Video(){
     return(
         <div style={{position: 'relative'}}>

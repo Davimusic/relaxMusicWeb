@@ -8,7 +8,11 @@ body {
   padding: 0;
   margin: 0;
   font-size: 3vh;
-  font-family: 'Caprasimo', cursive;
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+
+h3{
+  margin: 0px;
 }
 
 .linea-horizontal {
@@ -185,17 +189,61 @@ ul.menu li a:hover {
 
 
 .displayMenu{
+  transition: 1s;
   display: block;
+  width: 40vh; 
+  height: 90vh;
+  padding: 10px;
 }
+
+
+.menuCelular{
+  position: absolute;
+  width:  8vw;
+  height: 8hv;
+  margin: 1.8vh;
+  display: none;
+  border: none;
+  border-radius: 0.7em;
+}
+
+.menuCelularEsconder{
+  margin-top: 8vw;
+  width:  8vw;
+  height: 8hv;
+  padding: 10px;
+  display: none;
+}
+
+
+
 
 @media (max-width: 800px) {
   .displayMenu {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width:  0vw;
+    height: 0hv;
+    padding: 0px;
     overflow: hidden;
   }
+
+  .menuCelular{
+    display: flex;
+  }
+
+  .menuCelularEsconder{
+    display: flex;
+  }
+
+  
 }
+
+
+
+/*contenedorAudios*/
+
+
+
 
 
 

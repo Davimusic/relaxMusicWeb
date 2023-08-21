@@ -7,7 +7,7 @@ export function ElementoAudio(){
     const arreAudiosPadre = arrePadre()
 
     return(
-            <div id='contenedorAudios' style={{ width: "100%", height: '90vh', padding: "10px" }} className='scrollVertical color1 colorLetra1' >
+            <div id='contenedorAudios' style={{ width: "100%", height: '83vh'}} className='scrollVertical color1 colorLetra1' >
                 {arreAudiosPadre.map((item, index) => (
                     <div id={`secAudio${index}`} onClick={() => usarAudio(index, index)} key={index} style={{ width: "100%", height: '10vh', borderRadius: '0.5em', marginBottom:'10px', padding: '10px' }} className='efectoFondoTransparente'>
                         <div style={{display: "flex"}}>

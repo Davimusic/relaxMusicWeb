@@ -1,8 +1,6 @@
 "use client";
 
 
-
-
 function Home() {
   const { tasks } = useTasks();
 

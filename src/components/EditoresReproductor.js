@@ -2,6 +2,7 @@
 
 import Imagenes from "./Img";
 import {usarAudio} from '../funciones/UsarAudio'
+import '../estilos/rangeReproductor.css'
 
 
 const editoresReproductor = ({id}) => {

@@ -1,0 +1,90 @@
+
+ul.menu {
+    list-style: none;
+    padding: 0;
+    background-color: #333;
+    text-align: center;
+}
+
+ul.menu li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+ul.menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+ul.menu li a:hover {
+    background-color: #555;
+}
+
+.displayMenu{
+    transition: 1s;
+    display: block;
+    width: 40vh; 
+    height: 83vh;
+    border-right: 1px solid;
+    border-color: rgb(0, 0, 0);
+}
+
+
+.menuCelular{
+    /*position: absolute;*/
+    width:  5vh;
+    height: 5vh;
+    /*margin-left: 90vw;*/
+    /**display: none;*/
+    border: none;
+    border-radius: 0.7em;
+    /*background: none;*/
+}
+
+.menuCelularImage{
+    width:  100%;
+    height: 100%;
+}
+
+.menuCelularEsconder{
+    margin-top: 3vh;
+    width:  7vh;
+    height: 7vh;
+    padding: 10px;
+    /*display: none;*/
+    background: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+
+
+
+@media (max-width: 800px) {
+    .displayMenu {
+        position: absolute;
+        width:  0vw;
+        height: 0hv;
+        padding: 0px;
+        overflow: hidden;
+    }
+    .menuCelularEsconder{
+        width:  4.5vh;
+        height: 4.5vh;
+    }
+
+}
+
+
+.menuSuperior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding-inline-start: 10px; /* Añade algún espacio interno para que el texto no esté pegado al borde */
+    padding-inline-end: 20px;
+    height: 7vh;
+}
+

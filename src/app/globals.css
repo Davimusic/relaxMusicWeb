@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 html,
 body {
   color: white;
@@ -57,41 +53,6 @@ a {
   box-sizing: border-box;
 }
 
-.slider {
-  -webkit-appearance: none;
-  width: 90%;
-  height: 1vh;
-  border-radius: 5px;
-  background: #0799b6;
-  outline: none;
-  /*opacity: 0.5;*/
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-/*.slider:hover {
-  opacity: 1;
-}*/
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 3vh;
-  height: 3vh;
-  border-radius: 50%;
-  background: #0799b6;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 3vh;
-  height: 3vh;
-  border-radius: 50%;
-  background: #0799b6;
-  cursor: pointer;
-}
-
-
 
 .scrollVertical{
   overflow: scroll; 
@@ -137,29 +98,6 @@ a {
 
 
 
-ul.menu {
-  list-style: none;
-  padding: 0;
-  background-color: #333;
-  text-align: center;
-}
-
-ul.menu li {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-ul.menu li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px;
-  transition: background-color 0.3s ease;
-}
-
-ul.menu li a:hover {
-  background-color: #555;
-}
 
 .container {
   display: flex;
@@ -188,55 +126,6 @@ ul.menu li a:hover {
 }
 
 
-.displayMenu{
-  transition: 1s;
-  display: block;
-  width: 40vh; 
-  height: 90vh;
-  padding: 10px;
-}
-
-
-.menuCelular{
-  position: absolute;
-  width:  8vw;
-  height: 8hv;
-  margin: 1.8vh;
-  display: none;
-  border: none;
-  border-radius: 0.7em;
-}
-
-.menuCelularEsconder{
-  margin-top: 8vw;
-  width:  8vw;
-  height: 8hv;
-  padding: 10px;
-  display: none;
-}
-
-
-
-
-@media (max-width: 800px) {
-  .displayMenu {
-    position: absolute;
-    width:  0vw;
-    height: 0hv;
-    padding: 0px;
-    overflow: hidden;
-  }
-
-  .menuCelular{
-    display: flex;
-  }
-
-  .menuCelularEsconder{
-    display: flex;
-  }
-
-  
-}
 
 
 

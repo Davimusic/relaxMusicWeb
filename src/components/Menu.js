@@ -3,18 +3,17 @@
 import { menuCelular } from "@/funciones/MenuCelular";
 import Imagenes from "./Img";
 import SwitchMode from './SwichtMode';
+import '../estilos/menu.css'
 
 
 const menu = ({id}) => {
     
-    const styleLi = {display: 'flex', marginRight: '5px', marginBottom: '2vh'}
+    const styleLi = {display: 'flex', marginRight: '4vh', marginBottom: '2vh'}
     const styleA = {marginRight: '5px',  marginRight: 'auto'}
     const styleIma = {width: '6vh', height: '6vh',  marginLeft: 'auto'}
 
     return (
-        <div>
-            <button className="menuCelular" style={{background: 'white'}} onClick={() => menuCelular('mostrar')}><Imagenes style={{with: '4vh', height: '4vh'}} link='https://res.cloudinary.com/dplncudbq/image/upload/v1692414994/mias/menu_quakfw.png'/></button>
-            <div className='displayMenu color2 colorLetra1'>  
+        <div className='displayMenu color2 colorLetra1'>  
                 <ul className="container">
                     <li style={styleLi} className="espacioEquilatero">
                         <a style={styleA} href="#"> Inicio</a>
@@ -39,9 +38,8 @@ const menu = ({id}) => {
                     </li>
                     <div className="linea-horizontal" style={{marginTop: '3vh', marginBottom: '3vh'}}></div>
                     <SwitchMode/>
-                    <button className="menuCelularEsconder" onClick={() => menuCelular('esconder')}><Imagenes style={{with: '4vh', height: '4vh'}} link='https://res.cloudinary.com/dplncudbq/image/upload/v1692415538/mias/x_dzlrbc.png'/></button>
-                </ul>         
-            </div>
+                    <Imagenes onClick={() => menuCelular('esconder')} className="menuCelularEsconder" link='https://res.cloudinary.com/dplncudbq/image/upload/v1692415538/mias/x_dzlrbc.png'/>
+                </ul>                       
         </div>
     );
 };

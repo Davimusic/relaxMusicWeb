@@ -1,15 +1,22 @@
 export function menuCelular(acc){
-    let contenedorMenu = document.querySelectorAll('.displayMenu')
+    let displayMenu = document.querySelectorAll('.displayMenu')
     if(acc === 'mostrar'){
-        contenedorMenu.forEach(function(elemento) {
-            elemento.style.height = '100vh'; 
-            elemento.style.width = '100vw';  
+        displayMenu.forEach(function(elemento) {
+            elemento.style.height = '83vh'; 
+            if(window.innerWidth > 800){
+                elemento.style.width = '40vw'; 
+            } else {
+                elemento.style.width = '100vw'; 
+            }
+            elemento.style.opacity = '1'; 
+            elemento.style.visibility = 'visible'
         });
     } else {
-        contenedorMenu.forEach(function(elemento) {
+        displayMenu.forEach(function(elemento) {
             elemento.style.height = '0vh'; 
-            elemento.style.width = '0vw';  
+            elemento.style.width = '0vw'; 
+            elemento.style.opacity = '0'; 
+            elemento.style.visibility = 'visible'
         });
     }
-    
 }

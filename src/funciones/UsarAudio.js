@@ -6,6 +6,7 @@ import { actulizarColorFondoContenido } from "./ActualizarColorFondoContenido";
 
 
 export function usarAudio(i, d) {
+    audioToast('entrA')
     const audio = document.getElementById('audioRep');
     const arreAudiosPadre = arrePadre()
     const botonPlay = document.getElementById('botonRepro1');
@@ -36,8 +37,18 @@ export function usarAudio(i, d) {
 
         reproducirAudio(variablesGlobales().getCoor());
 
-    } else if (i === 'aleatorio' || i === 'repetir') {
-        variablesGlobales().setEstado(i)
+    } else if (i === 'repetir') {
+        if(variablesGlobales().getEstado() == 'repetir'){
+            variablesGlobales().setEstado('audioActual')
+        } else {
+            variablesGlobales().setEstado(i)
+        }
+    } else if(i === 'aleatorio'){
+        if(variablesGlobales().getEstado() == 'aleatorio'){
+            variablesGlobales().setEstado('audioActual')
+        } else {
+            variablesGlobales().setEstado(i)
+        }
     } else {
         variablesGlobales().setCoor(i)
         reproducirAudio(variablesGlobales().getCoor());
@@ -50,7 +61,16 @@ export function usarAudio(i, d) {
     clearInterval(variablesGlobales().getIntervaloSubir()); // Detener el intervalo anterior
     variablesGlobales().setIntervaloSubir(setInterval(subir, 1000))  // Crear un nuevo intervalo
     
-    actulizarColorFondoContenido()
+    actulizarColorFondoContenido(d)
+
+    if(variablesGlobales().getEstado() === 'aleatorio'){
+        document.getElementById('botonRepro3').style.background = '#027495'
+    } else if(variablesGlobales().getEstado() === 'repetir'){
+        document.getElementById('botonRepro4').style.background = '#027495'
+    } else if(variablesGlobales().getEstado() === 'audioActual'){
+        document.getElementById('botonRepro3').style.background = '#ffffff'
+        document.getElementById('botonRepro4').style.background = '#ffffff'
+    }
     
     
     function subir(){
@@ -60,22 +80,40 @@ export function usarAudio(i, d) {
     }
 
     function onAudioEnded() {
-        //const audio = document.getElementById('audioRep');
+        audio.removeEventListener('ended', onAudioEnded); // Eliminar el oyente
         if(variablesGlobales().getEstado() == 'audioActual'){
-            
+            /*if(variablesGlobales().getCoor() + 1 < arrePadre().length){
+                variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
+            } else {
+                variablesGlobales().setCoor(0)
+            }
+            reproducirAudio(variablesGlobales().getCoor())*/
         } else if(variablesGlobales().getEstado() == 'repetir'){
-            usarAudio(variablesGlobales().getCoor())
+            reproducirAudio(variablesGlobales().getCoor())
         } else if(variablesGlobales().getEstado() == 'aleatorio'){
             let numAle = Math.round(Math.random() * ((arreAudiosPadre.length - 1) - 0));
-            usarAudio(numAle)
+            reproducirAudio(numAle)
         }
-        audio.removeEventListener('ended', onAudioEnded); // Eliminar el oyente
+        
+
+        // Obtener el elemento contenedor
+        var contenedor = document.getElementById("contenedorAudios");
+
+        // Obtener el elemento secAudio5
+        var secAudio5 = document.getElementById(`secAudio${variablesGlobales().getCoor()}`);
+
+        // Calcular la posición del elemento secAudio5 respecto al contenedor
+        var offsetTop = secAudio5.offsetTop;
+
+        // Establecer scrollTop del contenedor para mostrar secAudio5 en la parte superior
+        contenedor.scrollTop = offsetTop;
+
+
+
+        audioToast(variablesGlobales().getCoor())
     }
     audio.addEventListener('ended', onAudioEnded);
-
-    audioToast(i)
 }
-
 
 
 

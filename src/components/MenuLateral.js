@@ -13,7 +13,7 @@ const menu = ({id}) => {
     const styleIma = {width: '6vh', height: '6vh',  marginLeft: 'auto'}
 
     return (
-        <div className='displayMenu color2 colorLetra1'>  
+        <nav className='displayMenu color2 colorLetra1'>  
                 <ul className="container">
                     <li style={styleLi} className="espacioEquilatero">
                         <a style={styleA} href="#"> Inicio</a>
@@ -40,7 +40,7 @@ const menu = ({id}) => {
                     <SwitchMode/>
                     <Imagenes onClick={() => menuCelular('esconder')} className="menuCelularEsconder" link='https://res.cloudinary.com/dplncudbq/image/upload/v1692415538/mias/x_dzlrbc.png'/>
                 </ul>                       
-        </div>
+        </nav>
     );
 };
 

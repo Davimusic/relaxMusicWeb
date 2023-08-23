@@ -2,13 +2,7 @@ import Image from 'next/image'
 import React, { useState } from "react";
 
 
-
-
-
 const Imagenes = ({ link, onClick, style, className, id }) => (
-
-
-    
         <Image
           width={50}
           height={100}
@@ -19,7 +13,6 @@ const Imagenes = ({ link, onClick, style, className, id }) => (
           alt="The guitarist in the concert."
           src= {link}            
         />
-    
-  );
+);
 
-  export default Imagenes;
+export default Imagenes;

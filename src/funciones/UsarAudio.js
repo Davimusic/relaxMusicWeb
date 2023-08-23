@@ -6,7 +6,7 @@ import { actulizarColorFondoContenido } from "./ActualizarColorFondoContenido";
 
 
 export function usarAudio(i, d) {
-    audioToast('entrA')
+    //audioToast('entrA')
     const audio = document.getElementById('audioRep');
     const arreAudiosPadre = arrePadre()
     const botonPlay = document.getElementById('botonRepro1');
@@ -110,7 +110,7 @@ export function usarAudio(i, d) {
 
 
 
-        audioToast(variablesGlobales().getCoor())
+        //audioToast(variablesGlobales().getCoor())
     }
     audio.addEventListener('ended', onAudioEnded);
 }

@@ -1,4 +1,5 @@
-"use client"
+import client from "next/client";
+import { Serverless } from "next/serverless";
 
 export function actualizarColorFondo(contidoId, id, colorResaltar, colorGeneral, largoArreglo){
     window.addEventListener("load", (event) => {

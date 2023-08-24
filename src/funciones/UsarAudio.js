@@ -1,4 +1,5 @@
-"use client"
+import client from "next/client";
+import { Serverless } from "next/serverless";
 
 import { reproducirAudio } from "./ReproducirAudio";
 import {arrePadre} from './RetornarInfoAudios'

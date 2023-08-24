@@ -1,3 +1,5 @@
+"use client"
+
 export function actualizarColorFondo(contidoId, id, colorResaltar, colorGeneral, largoArreglo){
     window.addEventListener("load", (event) => {
         console.log(' en');

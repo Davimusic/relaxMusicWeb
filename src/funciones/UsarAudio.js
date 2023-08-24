@@ -1,3 +1,5 @@
+"use client"
+
 import { reproducirAudio } from "./ReproducirAudio";
 import {arrePadre} from './RetornarInfoAudios'
 import { audioToast } from "./AudioToast";

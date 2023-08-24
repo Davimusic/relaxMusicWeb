@@ -1,10 +1,6 @@
-import client from "next/client";
-import { Serverless } from "next/serverless";
+"use client"
 
 export function actualizarColorFondo(contidoId, id, colorResaltar, colorGeneral, largoArreglo){
-    window.addEventListener("load", (event) => {
-        console.log(' en');
-    });
     for (let u = 0; u < largoArreglo; u++) {
         document.getElementById(`${contidoId}${u}`).style.background = colorGeneral
     }

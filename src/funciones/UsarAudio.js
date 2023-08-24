@@ -1,5 +1,4 @@
-import client from "next/client";
-import { Serverless } from "next/serverless";
+"use client"
 
 import { reproducirAudio } from "./ReproducirAudio";
 import {arrePadre} from './RetornarInfoAudios'
@@ -79,36 +78,40 @@ export function usarAudio(i, d) {
     }
 }
 
-window.addEventListener("load", (event) => {
-    const audio = document.getElementById('audioRep');
 
-    audio.addEventListener("ended", () => {
-        //console.log("Hola");
-        //audioToast(variablesGlobales().getEstado())
-        if(variablesGlobales().getEstado() == 'audioActual'){
-            if(variablesGlobales().getCoor() + 1 < arrePadre().length){
-                variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
-            } else {
-                variablesGlobales().setCoor(0)
+if (typeof window === "object") {
+    window.addEventListener("load", (event) => {
+        const audio = document.getElementById('audioRep');
+    
+        audio.addEventListener("ended", () => {
+            //console.log("Hola");
+            //audioToast(variablesGlobales().getEstado())
+            if(variablesGlobales().getEstado() == 'audioActual'){
+                if(variablesGlobales().getCoor() + 1 < arrePadre().length){
+                    variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
+                } else {
+                    variablesGlobales().setCoor(0)
+                }
+                reproducirAudio(variablesGlobales().getCoor())
+            } else if(variablesGlobales().getEstado() == 'repetir'){
+                reproducirAudio(variablesGlobales().getCoor())
+            } else if(variablesGlobales().getEstado() == 'aleatorio'){
+                let numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0))
+                while (numAle === variablesGlobales().getCoor()) {
+                    numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0));
+                }
+                variablesGlobales().setCoor(numAle)
+                reproducirAudio(variablesGlobales().getCoor())
             }
-            reproducirAudio(variablesGlobales().getCoor())
-        } else if(variablesGlobales().getEstado() == 'repetir'){
-            reproducirAudio(variablesGlobales().getCoor())
-        } else if(variablesGlobales().getEstado() == 'aleatorio'){
-            let numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0))
-            while (numAle === variablesGlobales().getCoor()) {
-                numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0));
-            }
-            variablesGlobales().setCoor(numAle)
-            reproducirAudio(variablesGlobales().getCoor())
-        }
-        
-        reubicarSeccionAudio()
-        actulizarColorFondoContenido(variablesGlobales().getCoor())
-        actualizarColorFondoBotonesEdicion()
-        
+            
+            reubicarSeccionAudio()
+            actulizarColorFondoContenido(variablesGlobales().getCoor())
+            actualizarColorFondoBotonesEdicion()
+            
+        });
     });
-});
+}
+
 
 
 

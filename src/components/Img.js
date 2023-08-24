@@ -1,6 +1,4 @@
 import Image from 'next/image'
-import React, { useState } from "react";
-
 
 const Imagenes = ({ link, onClick, style, className, id }) => (
         <Image

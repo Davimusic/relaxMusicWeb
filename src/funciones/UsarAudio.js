@@ -3,6 +3,9 @@ import {arrePadre} from './RetornarInfoAudios'
 import { audioToast } from "./AudioToast";
 import { variablesGlobales } from "./VariablesGlobales";
 import { actulizarColorFondoContenido } from "./ActualizarColorFondoContenido";
+import { reubicarSeccionAudio } from './ReubicarSeccionAudio'
+import { actualizarColorFondo } from "./ActualizarColorFondo";
+import { actualizarColorFondoBotonesEdicion } from "./ActualizarColorFondoBotonesEdicion";
 
 
 export function usarAudio(i, d) {
@@ -62,15 +65,8 @@ export function usarAudio(i, d) {
     variablesGlobales().setIntervaloSubir(setInterval(subir, 1000))  // Crear un nuevo intervalo
     
     actulizarColorFondoContenido(d)
-
-    if(variablesGlobales().getEstado() === 'aleatorio'){
-        document.getElementById('botonRepro3').style.background = '#027495'
-    } else if(variablesGlobales().getEstado() === 'repetir'){
-        document.getElementById('botonRepro4').style.background = '#027495'
-    } else if(variablesGlobales().getEstado() === 'audioActual'){
-        document.getElementById('botonRepro3').style.background = '#ffffff'
-        document.getElementById('botonRepro4').style.background = '#ffffff'
-    }
+    actualizarColorFondoBotonesEdicion()
+    reubicarSeccionAudio()
     
     
     function subir(){
@@ -78,16 +74,52 @@ export function usarAudio(i, d) {
         //console.log(audio.currentTime)
         document.getElementById('input').value=audio.currentTime
     }
+}
 
-    function onAudioEnded() {
-        audio.removeEventListener('ended', onAudioEnded); // Eliminar el oyente
+window.addEventListener("load", (event) => {
+    const audio = document.getElementById('audioRep');
+
+    audio.addEventListener("ended", () => {
+        //console.log("Hola");
+        //audioToast(variablesGlobales().getEstado())
+        if(variablesGlobales().getEstado() == 'audioActual'){
+            if(variablesGlobales().getCoor() + 1 < arrePadre().length){
+                variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
+            } else {
+                variablesGlobales().setCoor(0)
+            }
+            reproducirAudio(variablesGlobales().getCoor())
+        } else if(variablesGlobales().getEstado() == 'repetir'){
+            reproducirAudio(variablesGlobales().getCoor())
+        } else if(variablesGlobales().getEstado() == 'aleatorio'){
+            let numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0))
+            while (numAle === variablesGlobales().getCoor()) {
+                numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0));
+            }
+            variablesGlobales().setCoor(numAle)
+            reproducirAudio(variablesGlobales().getCoor())
+        }
+        
+        reubicarSeccionAudio()
+        actulizarColorFondoContenido(variablesGlobales().getCoor())
+        actualizarColorFondoBotonesEdicion()
+        
+    });
+});
+
+
+
+
+/**
+function onAudioEnded() {
+        audioToast(variablesGlobales().getEstado())
         if(variablesGlobales().getEstado() == 'audioActual'){
             /*if(variablesGlobales().getCoor() + 1 < arrePadre().length){
                 variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
             } else {
                 variablesGlobales().setCoor(0)
             }
-            reproducirAudio(variablesGlobales().getCoor())*/
+            reproducirAudio(variablesGlobales().getCoor())//
         } else if(variablesGlobales().getEstado() == 'repetir'){
             reproducirAudio(variablesGlobales().getCoor())
         } else if(variablesGlobales().getEstado() == 'aleatorio'){
@@ -108,14 +140,7 @@ export function usarAudio(i, d) {
         // Establecer scrollTop del contenedor para mostrar secAudio5 en la parte superior
         contenedor.scrollTop = offsetTop;
 
-
-
-        //audioToast(variablesGlobales().getCoor())
+        audio.removeEventListener('ended', onAudioEnded); // Eliminar el oyente
     }
-    audio.addEventListener('ended', onAudioEnded);
-}
-
-
-
-
-
+audio.addEventListener('ended', onAudioEnded);
+ */

@@ -1,26 +1,26 @@
 export function arrePadre(){
-    return  [{ linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1657579441/mias/m1_s2epfa.mp3',
-            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1658015902/mias/i1_ndc8ga.png', 
+    return  [{ linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1692977931/mias/relax6_e4qwpi.mp3',
+            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692978375/mias/f5_khcjl4.png', 
             titulo: 'titulo', 
             contenido: 'contenido contenido contenido contenido contenido contenido contenido contenido contenido contenido  contenido contenido contenido',
             meGusta: false},
-            { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1658158699/mias/26mesclaLista_kf3qai.wav',
-            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1657473822/mias/red-304573_xrlhrp.png', 
+            { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1692977892/mias/relax5_f1m6ly.mp3',
+            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692978373/mias/f6_kg2owd.png', 
             titulo: 'titulo', 
             contenido: 'contenido',
             meGusta: false
-        }, { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1655401932/mias/pista1C_i5w9id.wav',
-            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1655489421/mias/instagram_uugsxq.png', 
+        }, { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1692977821/mias/relax3_ukb5mh.mp3',
+            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692978372/mias/f1_npkojn.png', 
             titulo: 'titulo', 
             contenido: 'contenido',
             meGusta: false
-        }, { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1657299118/mias/m2_koysag.mp3',
-            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1657297550/mias/logoGenerico_dotmc8.png', 
+        }, { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1692977806/mias/relax2_i4fj1w.mp3',
+            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692978372/mias/f4_a6b89j.png', 
             titulo: 'titulo', 
             contenido: 'contenido',
             meGusta: false
-        }, { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1658158699/mias/26mesclaLista_kf3qai.wav',
-            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1676134085/mias/n4_b8hoot.jpg', 
+        }, { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1692977800/mias/relax1_cyum3i.mp3',
+            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692978372/mias/f3_w6ble7.png', 
             titulo: 'titulo', 
             contenido: 'contenido',
             meGusta: false
@@ -36,8 +36,8 @@ export function arrePadre(){
         contenido: 'contenido',
         meGusta: false
         }, 
-        { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1655401932/mias/pista1C_i5w9id.wav',
-            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1655489421/mias/instagram_uugsxq.png', 
+        { linkAudio:'https://res.cloudinary.com/dplncudbq/video/upload/v1692977795/mias/relax4_lrwyqb.mp3',
+            imagenAudio: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692978370/mias/f2_pm0tas.png', 
             titulo: 'titulo copia', 
             contenido: 'contenido copia',
             meGusta: false

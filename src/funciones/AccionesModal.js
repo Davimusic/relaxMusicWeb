@@ -1,7 +1,6 @@
 import { audioToast } from "./AudioToast"
 
 let conteo = 0
-
 export function accionesModal(){
 
     const modal = document.getElementById('modal')
@@ -19,29 +18,18 @@ export function accionesModal(){
         modal.style.opacity= '1'; 
         modal.style.visibility= 'visible';
         
-        const videoModal = document.getElementById('videoModal')
-        videoModal.src=linksVideos[0]
-        videoModal.play();
-
-        videoModal.addEventListener("play", () => {
-        videoModal.muted = true;
-        videoModal.controls = false; 
-        });
-
-        videoModal.addEventListener("click", () => {
-            videoModal.requestFullscreen();
-        });
-
-        videoModal.addEventListener("ended", () => {
-            if(conteo + 1 <= linksVideos.length){
-                conteo += 1
-            } else {
-                conteo = 0
-            }
-            videoModal.src = linksVideos[conteo]
-            videoModal.play()
-            audioToast(conteo)
-        });
+        const vide = document.getElementById('videoModal')
+        const conte = document.getElementById('contenidoModal')
+        if (typeof contenido === "object") {
+            console.log("entr");
+            vide.style.display= 'none'
+            conte.style.display = 'flex'
+            conte.innerHTML = `<h2>${contenido.titulo}</h2><h3>${contenido.contenido}</h3><img alt="" loading="lazy" width="100" height="100" decoding="async" style="width: 50vw; height: fit-content" srcset="${contenido.imagenAudio}">`
+        } else {
+            vide.style.display= 'block'
+            conte.style.display = 'none'
+            video()
+        }
     }
 
     function cerrarModal(){
@@ -51,6 +39,32 @@ export function accionesModal(){
         modal.style.visibility= 'hidden';
         const videoModal = document.getElementById('videoModal')
         videoModal.pause();
+    }
+
+    function video() {
+        const videoModal = document.getElementById('videoModal')
+        videoModal.src=linksVideos[0]
+        videoModal.play();
+
+        videoModal.addEventListener("play", () => {
+            videoModal.muted = true;
+            videoModal.controls = false; 
+        });
+
+        videoModal.addEventListener("click", () => {
+            videoModal.requestFullscreen();
+        });
+
+        videoModal.addEventListener("ended", () => {
+            if(conteo + 1 <= linksVideos.length - 1){
+                conteo += 1
+            } else {
+                conteo = 0
+            }
+            videoModal.src = linksVideos[conteo]
+            videoModal.play()
+            //audioToast(conteo)
+        });        
     }
 
     return {

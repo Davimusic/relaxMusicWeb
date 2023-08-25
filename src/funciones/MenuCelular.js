@@ -11,12 +11,20 @@ export function menuCelular(acc){
             elemento.style.opacity = '1'; 
             elemento.style.visibility = 'visible'
         });
+        const hijos = document.querySelectorAll(".displayMenu > *");
+        hijos.forEach((hijo) => {
+            hijo.style.display = "block";
+        });
     } else {
         displayMenu.forEach(function(elemento) {
             elemento.style.height = '0vh'; 
             elemento.style.width = '0vw'; 
             elemento.style.opacity = '0'; 
             elemento.style.visibility = 'visible'
+        });
+        const hijos = document.querySelectorAll(".displayMenu > *");
+        hijos.forEach((hijo) => {
+            hijo.style.display = "none";
         });
     }
 }

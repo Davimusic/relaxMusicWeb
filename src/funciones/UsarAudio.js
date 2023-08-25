@@ -79,7 +79,7 @@ export function usarAudio(i, d) {
 }
 
 
-if (typeof window === "object") {
+if (typeof window !== "undefined") {
     window.addEventListener("load", (event) => {
         const audio = document.getElementById('audioRep');
     
@@ -107,7 +107,6 @@ if (typeof window === "object") {
             reubicarSeccionAudio()
             actulizarColorFondoContenido(variablesGlobales().getCoor())
             actualizarColorFondoBotonesEdicion()
-            
         });
     });
 }

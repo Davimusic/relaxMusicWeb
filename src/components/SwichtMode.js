@@ -5,6 +5,7 @@ import '../app/globals.css'
 import { paletaDeColores } from '@/funciones/PaletaDeColores'
 import { variablesGlobales } from '@/funciones/VariablesGlobales';
 import { actulizarColorFondoContenido } from '@/funciones/ActualizarColorFondoContenido';
+import { actualizarColorFondoBotonesEdicion } from '@/funciones/ActualizarColorFondoBotonesEdicion';
 
 const switchMode = ({}) => {
     return (
@@ -30,6 +31,7 @@ function screenMode(){
         paletaDeColores().actualizarBackground('.color2', '#f4f5f5')
     }
     actulizarColorFondoContenido()
+    actualizarColorFondoBotonesEdicion()
 }
 
 setTimeout(act, 1000)

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { arrePadre } from '../funciones/RetornarInfoAudios';
 import { usarAudio } from '../funciones/UsarAudio';
 import Imagenes from './Img';
+import { accionesModal } from "@/funciones/AccionesModal";
 
 export function ElementoAudio() {
-    const styleImages = { height: '5vh', width: '5vh' }
+    const styleImages = { height: '5vh', width: '5vh', marginRight: '10px' }
     const arreAudiosPadre = arrePadre()
     const [meGustas, setMeGustas] = useState(Array(arreAudiosPadre.length).fill(false));
 
@@ -26,6 +27,7 @@ export function ElementoAudio() {
                         <h3>{item.titulo}</h3>
                         <h4>{item.contenido}</h4>
                     </div>
+                    <Imagenes id={`opciones${index}`} style={styleImages} onClick={(event) => accionesModal().abrirModal(event,item)} link='https://res.cloudinary.com/dplncudbq/image/upload/v1692921519/mias/opciones_hqm250.png'/>
                     <Imagenes id={`corazon${index}`} style={styleImages} onClick={(event) => accionMeGusta(event, index)} link={meGustas[index] ? 'https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png' : 'https://res.cloudinary.com/dplncudbq/image/upload/v1692318586/mias/corazon_ccetxa.png'} />
                 </div>
             ))}

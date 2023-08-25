@@ -21,6 +21,8 @@ export function accionesModal(){
         
         const videoModal = document.getElementById('videoModal')
         videoModal.src=linksVideos[0]
+        videoModal.play();
+
         videoModal.addEventListener("play", () => {
         videoModal.muted = true;
         videoModal.controls = false; 
@@ -40,15 +42,13 @@ export function accionesModal(){
             videoModal.play()
             audioToast(conteo)
         });
-
-        videoModal.play();
     }
 
     function cerrarModal(){
         modal.style.width = '0vh'
         modal.style.height = '0Vh'
         modal.style.opacity= '0'; 
-        modal.style.visibility= 'invisible';
+        modal.style.visibility= 'hidden';
         const videoModal = document.getElementById('videoModal')
         videoModal.pause();
     }

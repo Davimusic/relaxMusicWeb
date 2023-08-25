@@ -17,14 +17,14 @@ const Modal = ({}) => {
             style={{
                     height: '0vh',
                     width: '0vh', 
-                    backdropFilter: 'blur(5px)',
+                    background: 'black',
                     position: 'fixed',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     zIndex:'9999', 
                     opacity: '0',
-                    visibility: 'invisible', 
+                    visibility: 'hidden', 
                     }}>
             <header style={{display: 'flex', paddingBottom: '5vh'}}> 
                 <Imagenes 
@@ -34,8 +34,6 @@ const Modal = ({}) => {
                     link='https://res.cloudinary.com/dplncudbq/image/upload/v1692415538/mias/x_dzlrbc.png'
                     onClick={() =>accionesModal().cerrarModal()}/>   
             </header>
-            
-                
             <video id='videoModal' className="videoModal"  style = {{width: '100%', height: '100%', objectFit: 'contain', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex:'999' }}   src="" controls muted></video>     
         </div>
     );

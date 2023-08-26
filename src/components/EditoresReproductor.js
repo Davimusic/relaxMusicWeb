@@ -11,7 +11,7 @@ const editoresReproductor = ({id}) => {
     const styleImages = {marginLeft: '20px', height: '6vh', width: '6vh'}   
 
     return (
-        <div style={{borderTop: '1px solid', borderColor: 'rgb(0, 0, 0)'}}>
+        <div style={{borderTop: '1px solid', borderColor: 'rgb(0, 0, 0)', position: 'fixed', bottom: '0', zIndex: '999'}}>
             <div style={{display: 'flex'}} className='espacioEquilatero'>
                     <RangeInput id='input'/>
             </div> 

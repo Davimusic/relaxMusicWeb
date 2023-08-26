@@ -44,5 +44,4 @@ const menu = ({id}) => {
     );
 };
 
-
 export default menu;

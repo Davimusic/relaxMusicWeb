@@ -125,11 +125,15 @@ a {
   }
 }
 
+@media screen and (max-width: 800px) {
+  body {
+    orientation: portrait;
+  }
+}
 
 
 
 
-/*contenedorAudios*/
 
 
 

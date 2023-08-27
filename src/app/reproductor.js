@@ -14,9 +14,6 @@ let arreAudiosPadre =   [[['https://res.cloudinary.com/dplncudbq/video/upload/v1
 
 
 
-
-
-
 export function usarReproductorAudio(idSeccion){
 
     arreAudios = []

@@ -13,4 +13,4 @@ const Imagenes = ({ link, onClick, style, className, id }) => (
         />
 );
 
-export default Imagenes;
+export default Imagenes;   

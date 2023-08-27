@@ -3,7 +3,7 @@ import {variablesGlobales} from './VariablesGlobales'
 
 
 export function reproducirAudio(coor) {
-    const arreAudiosPadre = arrePadre()
+    const arreAudiosPadre = arrePadre().getArrePadre()
     const audio = document.getElementById('audioRep');
     const contenedorAudios = document.getElementById('contenedorAudios');
     const botonPlay = document.getElementById('botonRepro1');

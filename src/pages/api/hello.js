@@ -1,5 +1,8 @@
 //import { MongoClient, ObjectId } from 'mongodb';
 import { createDocument } from './createDocument';
+import { getDocumentsByTipo } from './getDocumentsByTipo';
+
+console.log(getDocumentsByTipo('imagen'));
 
 async function readDocuments() {
   const db = await connectToDatabase();

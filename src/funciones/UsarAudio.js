@@ -13,7 +13,8 @@ import { actualizarColorFondoBotonesEdicion } from "./ActualizarColorFondoBotone
 export function usarAudio(i, d) {
     //audioToast('entrA')
     const audio = document.getElementById('audioRep');
-    const arreAudiosPadre = arrePadre()
+    const arreAudiosPadre = arrePadre().getArrePadre()
+    console.log(arreAudiosPadre);
     const botonPlay = document.getElementById('botonRepro1');
 
     if (i === 'play') {

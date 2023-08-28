@@ -13,7 +13,7 @@ export function usarAudio(i, d) {
     //audioToast('entrA')
     const audio = document.getElementById('audioRep');
     const arreAudiosPadre = arrePadre().getArrePadre()
-    console.log(arreAudiosPadre);
+    //console.log(arreAudiosPadre);
     const botonPlay = document.getElementById('botonRepro1');
 
     if (i === 'play') {
@@ -84,7 +84,7 @@ if (typeof window !== "undefined") {
         const audio = document.getElementById('audioRep');
         audio.addEventListener("ended", () => {
             if(variablesGlobales().getEstado() == 'audioActual'){
-                if(variablesGlobales().getCoor() + 1 < arrePadre().length){
+                if(variablesGlobales().getCoor() + 1 < arrePadre().getArrePadre().length){
                     variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
                 } else {
                     variablesGlobales().setCoor(0)
@@ -93,9 +93,9 @@ if (typeof window !== "undefined") {
             } else if(variablesGlobales().getEstado() == 'repetir'){
                 reproducirAudio(variablesGlobales().getCoor())
             } else if(variablesGlobales().getEstado() == 'aleatorio'){
-                let numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0))
+                let numAle = Math.round(Math.random() * ((arrePadre().getArrePadre().length - 1) - 0))
                 while (numAle === variablesGlobales().getCoor()) {
-                    numAle = Math.round(Math.random() * ((arrePadre().length - 1) - 0));
+                    numAle = Math.round(Math.random() * ((arrePadre().getArrePadre().length - 1) - 0));
                 }
                 variablesGlobales().setCoor(numAle)
                 reproducirAudio(variablesGlobales().getCoor())
@@ -112,37 +112,4 @@ if (typeof window !== "undefined") {
 
 
 
-/**
-function onAudioEnded() {
-        audioToast(variablesGlobales().getEstado())
-        if(variablesGlobales().getEstado() == 'audioActual'){
-            /*if(variablesGlobales().getCoor() + 1 < arrePadre().length){
-                variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
-            } else {
-                variablesGlobales().setCoor(0)
-            }
-            reproducirAudio(variablesGlobales().getCoor())//
-        } else if(variablesGlobales().getEstado() == 'repetir'){
-            reproducirAudio(variablesGlobales().getCoor())
-        } else if(variablesGlobales().getEstado() == 'aleatorio'){
-            let numAle = Math.round(Math.random() * ((arreAudiosPadre.length - 1) - 0));
-            reproducirAudio(numAle)
-        }
-        
 
-        // Obtener el elemento contenedor
-        var contenedor = document.getElementById("contenedorAudios");
-
-        // Obtener el elemento secAudio5
-        var secAudio5 = document.getElementById(`secAudio${variablesGlobales().getCoor()}`);
-
-        // Calcular la posición del elemento secAudio5 respecto al contenedor
-        var offsetTop = secAudio5.offsetTop;
-
-        // Establecer scrollTop del contenedor para mostrar secAudio5 en la parte superior
-        contenedor.scrollTop = offsetTop;
-
-        audio.removeEventListener('ended', onAudioEnded); // Eliminar el oyente
-    }
-audio.addEventListener('ended', onAudioEnded);
- */

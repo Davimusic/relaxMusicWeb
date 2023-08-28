@@ -135,7 +135,6 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #027495;
   height: 100%;
   width: 100%;
 }
@@ -143,12 +142,16 @@ a {
 .loading {
   width: 30vh;
   height: 30vh;
-  border: 4vh solid rgba(0, 0, 0, 0.1);
-  border-left-color: #000;
+  border: 4vh solid rgba(0, 0, 0, 0.247);
+  border-left-color: #ffffff;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1.5s linear infinite;
 }
 
+.aparecer {
+  opacity: 1; /* Cambia la opacidad a 1 para mostrar gradualmente */
+  transition: opacity 8 ease;
+}
 
 
 

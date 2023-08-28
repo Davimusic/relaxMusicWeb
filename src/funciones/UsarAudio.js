@@ -9,7 +9,6 @@ import { reubicarSeccionAudio } from './ReubicarSeccionAudio'
 import { actualizarColorFondo } from "./ActualizarColorFondo";
 import { actualizarColorFondoBotonesEdicion } from "./ActualizarColorFondoBotonesEdicion";
 
-
 export function usarAudio(i, d) {
     //audioToast('entrA')
     const audio = document.getElementById('audioRep');
@@ -81,12 +80,9 @@ export function usarAudio(i, d) {
 
 
 if (typeof window !== "undefined") {
-    window.addEventListener("load", (event) => {
+    //window.addEventListener("load", (event) => {
         const audio = document.getElementById('audioRep');
-    
         audio.addEventListener("ended", () => {
-            //console.log("Hola");
-            //audioToast(variablesGlobales().getEstado())
             if(variablesGlobales().getEstado() == 'audioActual'){
                 if(variablesGlobales().getCoor() + 1 < arrePadre().length){
                     variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)
@@ -109,7 +105,7 @@ if (typeof window !== "undefined") {
             actulizarColorFondoContenido(variablesGlobales().getCoor())
             actualizarColorFondoBotonesEdicion()
         });
-    });
+    //});
 }
 
 

@@ -20,7 +20,7 @@ const Modal = ({}) => {
                     }}>
             <header style={{display: 'flex'}}> 
                 <Imagenes 
-                    style={{height: '5vh', width: '5vh', position: 'fixed', top: '10vh', left: '10vh', transform: 'translate(-50%, -50%)', zIndex:'99999', background: 'white'}}  
+                    style={{height: '5vh', width: '5vh', position: 'fixed', top: '15vh', left: '15vh', transform: 'translate(-50%, -50%)', zIndex:'99999', background: 'white'}}  
                     link='https://res.cloudinary.com/dplncudbq/image/upload/v1692415538/mias/x_dzlrbc.png'
                     onClick={() =>accionesModal().cerrarModal()}/>   
             </header>

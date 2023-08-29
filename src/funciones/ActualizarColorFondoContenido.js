@@ -4,7 +4,7 @@ import { arrePadre } from './RetornarInfoAudios';
 
 
 export function actulizarColorFondoContenido(d) {//la d es de los botones de eidicion, reproducion de audio
-    let arreAudiosPadre = arrePadre()
+    let arreAudiosPadre = arrePadre().getArrePadre()
     let colorFondoEnUso = '', colorFondoSinUso = '';
     if(variablesGlobales().getModoPantalla() == 'oscuro'){
         colorFondoEnUso = '#ffffff'

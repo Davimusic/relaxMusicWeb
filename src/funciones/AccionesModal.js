@@ -1,4 +1,5 @@
 import { audioToast } from "./AudioToast"
+import { variablesGlobales } from "./VariablesGlobales"
 
 let conteo = 0
 export function accionesModal(){
@@ -20,14 +21,20 @@ export function accionesModal(){
         
         const vide = document.getElementById('videoModal')
         const conte = document.getElementById('contenidoModal')
+        
         if (typeof contenido === "object") {
-            console.log("entr");
             vide.style.display= 'none'
             conte.style.display = 'flex'
+            modal.style.width = '100vw'
+            modal.style.height = '100vh'
+            modal.style.background = 'none'
+            conte.style.height = '90.3vh'
+            conte.style.top = '0%'
             conte.innerHTML = `<h2>${contenido.titulo}</h2><h3>${contenido.contenido}</h3><img alt="" loading="lazy" width="100" height="100" decoding="async" style="width: 50vw; height: fit-content" srcset="${contenido.imagenAudio}">`
         } else {
             vide.style.display= 'block'
             conte.style.display = 'none'
+            modal.style.top = '50%'
             video()
         }
     }

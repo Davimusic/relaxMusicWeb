@@ -50,12 +50,12 @@ export function ElementoAudio() {
     return (
         <div id='contenedorAudios' style={{ width: "100%", height: '83vh', paddingBottom: '7vh', overflow: 'auto', scrollBehavior: 'smooth'}} className='scrollVertical color1 colorLetra1'>
             {!dataLoaded ? (
-                <div className="loading-container color1">
+                <div className="loading-container aperecerSuevemente color1">
                 <div className="loading"></div>
                 </div>
             ) : (
                 arreAudiosPadre.map((item, index) => (
-                    <div id={`secAudio${index}`} onClick={() => usarAudio(index, index)} key={index} style={{ width: "100%", height: '10vh', borderRadius: '0.5em', padding: '0.5vh', marginBottom: '2vh', display: "flex" }} className={`efectoFondoTransparente  ${dataLoaded ? 'aparecer' : ''}`} >
+                    <div id={`secAudio${index}`} onClick={() => usarAudio(index, index)} key={index} style={{ width: "100%", height: '10vh', borderRadius: '0.5em', padding: '0.5vh', marginBottom: '2vh', display: "flex" }} className={`efectoFondoTransparente  ${dataLoaded ? 'aperecerSuevemente' : ''}`} >
                         <Imagenes link={item.imagenAudio} style={{height: '9vh', width: '9vh', marginRight: '10px'}} className={'efectoGirar'} onClick={(event) => accionesModal().abrirModal(event, item)}/>
                         <div style={{ marginLeft: '20px', height: '9vh', width: '90vw', display: 'flex' }} className='scrollVertical'>
                         <h3>{item.titulo}</h3>

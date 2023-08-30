@@ -8,7 +8,10 @@ import { actulizarColorFondoContenido } from "./ActualizarColorFondoContenido";
 import { reubicarSeccionAudio } from './ReubicarSeccionAudio'
 import { actualizarColorFondo } from "./ActualizarColorFondo";
 import { actualizarColorFondoBotonesEdicion } from "./ActualizarColorFondoBotonesEdicion";
+import { ActualizarModalObjeto } from "./ActualizarModalObjeto";
 
+
+let prueva = 0
 export function usarAudio(i, d) {
     //audioToast('entrA')
     const audio = document.getElementById('audioRep');
@@ -42,6 +45,26 @@ export function usarAudio(i, d) {
 
         reproducirAudio(variablesGlobales().getCoor());
 
+    } else if (i === 'tipoUso') {
+        const ima =  document.getElementById('botonRepro3')
+        const dicc = {
+                0: 'https://res.cloudinary.com/dplncudbq/image/upload/v1693363915/flecha_cjzjxx.png',
+                1: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223013/alea_q8jfvg.png',
+                2: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223037/mias/re_oyr9yt.png'
+                };
+        switch (prueva) {
+            case 0:
+                prueva = 1
+                break;
+            case 1:
+                prueva = 2
+                break;
+            case 2:
+                prueva = 0
+                break;    
+        }
+        ima.srcset = dicc[prueva]
+        console.log(prueva);
     } else if (i === 'repetir') {
         if(variablesGlobales().getEstado() == 'repetir'){
             variablesGlobales().setEstado('audioActual')
@@ -68,8 +91,11 @@ export function usarAudio(i, d) {
     
     actulizarColorFondoContenido(d)
     actualizarColorFondoBotonesEdicion()
-    reubicarSeccionAudio()
+    reubicarSeccionAudio()  
     
+    if(variablesGlobales().getReproducir() === 'si'){
+        ActualizarModalObjeto()
+    }
     
     function subir(){
         let audio = document.getElementById('audioRep')
@@ -83,6 +109,12 @@ if (typeof window !== "undefined") {
     //window.addEventListener("load", (event) => {
         const audio = document.getElementById('audioRep');
         audio.addEventListener("ended", () => {
+            if( variablesGlobales().getEstado() != 'audioActual'&&
+                variablesGlobales().getEstado() != 'repetir'&&
+                variablesGlobales().getEstado() != 'aleatorio'){
+                    variablesGlobales().setEstado('audioActual')
+                }
+            console.log(variablesGlobales().getEstado());
             if(variablesGlobales().getEstado() == 'audioActual'){
                 if(variablesGlobales().getCoor() + 1 < arrePadre().getArrePadre().length){
                     variablesGlobales().setCoor(variablesGlobales().getCoor() + 1)

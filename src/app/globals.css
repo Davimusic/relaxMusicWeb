@@ -148,13 +148,18 @@ a {
   animation: spin 1.5s linear infinite;
 }
 
-.aparecer {
-  opacity: 1; /* Cambia la opacidad a 1 para mostrar gradualmente */
-  transition: opacity 8 ease;
+@keyframes aperecerSuevemente {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-
-
+.aperecerSuevemente {
+  animation: aperecerSuevemente 2s ease; /* Aquí agregamos la duración y la función de curva */
+}
 
 
 

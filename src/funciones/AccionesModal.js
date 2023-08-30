@@ -13,7 +13,8 @@ export function accionesModal(){
                         'https://res.cloudinary.com/dplncudbq/video/upload/v1692931660/mias/v3_qemvau.mp4']
 
     function abrirModal(event, contenido){
-        event.stopPropagation()
+        //event.stopPropagation()
+
         modal.style.width = '100vw'
         modal.style.height = '100Vh'
         modal.style.opacity= '1'; 
@@ -25,17 +26,21 @@ export function accionesModal(){
         if (typeof contenido === "object") {
             vide.style.display= 'none'
             conte.style.display = 'flex'
-            modal.style.width = '100vw'
-            modal.style.height = '100vh'
-            modal.style.background = 'none'
-            conte.style.height = '90.3vh'
-            conte.style.top = '0%'
-            conte.innerHTML = `<h2>${contenido.titulo}</h2><h3>${contenido.contenido}</h3><img alt="" loading="lazy" width="100" height="100" decoding="async" style="width: 50vw; height: fit-content" srcset="${contenido.imagenAudio}">`
+            modal.style.zIndex = '9999'
+            conte.innerHTML = inyecccionHTMLConte(contenido)
+            const img = document.getElementById('opciones');
+                        img.onclick = (event) => {
+                            accionesModal().abrirModal(event, '');
+                        };
+            conte.style.transition = '5s';
+            variablesGlobales().setUsoModal('objeto')
         } else {
+            modal.style.zIndex = '10000'
             vide.style.display= 'block'
             conte.style.display = 'none'
             modal.style.top = '50%'
             video()
+            variablesGlobales().setUsoModal('video')
         }
     }
 
@@ -78,4 +83,12 @@ export function accionesModal(){
         abrirModal,
         cerrarModal,
     };
+}
+
+function inyecccionHTMLConte(contenido){
+    return `
+    <img id='opciones' alt="" loading="lazy" width="100" height="100" decoding="async" style="width: fit-content; height: 3vh;" srcset="https://res.cloudinary.com/dplncudbq/image/upload/v1692979344/mias/opcione_kqa0uz.png">
+    <h2>${contenido.titulo}</h2>
+    <h3>${contenido.contenido}</h3>
+    <img alt="" loading="lazy" width="100" height="100" decoding="async" style="width: 50vh; height: 50vh;" srcset="${contenido.imagenAudio}">`
 }

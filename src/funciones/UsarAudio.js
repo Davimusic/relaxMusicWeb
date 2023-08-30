@@ -51,7 +51,7 @@ export function usarAudio(i, d) {
                 0: 'https://res.cloudinary.com/dplncudbq/image/upload/v1693363915/flecha_cjzjxx.png',
                 1: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223013/alea_q8jfvg.png',
                 2: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223037/mias/re_oyr9yt.png'
-                };
+                }; //hi
         switch (prueva) {
             case 0:
                 prueva = 1

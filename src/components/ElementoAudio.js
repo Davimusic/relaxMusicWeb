@@ -21,7 +21,7 @@ export function ElementoAudio() {
                 arrePadre().setArrePadre(documents)
                 setMeGustas(Array(documents.map(document => document.meGusta)));
                 setDataLoaded(true)
-                console.log(dataLoaded);
+                //console.log(dataLoaded);
             } catch (error) {
                 console.error('Error al obtener documentos:', error);
             }
@@ -44,7 +44,7 @@ export function ElementoAudio() {
     }, [arreAudiosPadre]);
 
     useEffect(() => {
-        console.log(dataLoaded);
+        //console.log(dataLoaded);
     }, [dataLoaded]);
 
     return (

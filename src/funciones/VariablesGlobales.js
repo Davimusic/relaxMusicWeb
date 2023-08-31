@@ -48,11 +48,11 @@ export function variablesGlobales() {
     }
 
     function getUsoModal() {
-        return estado;
+        return usoModal;
     }
 
     function setUsoModal(newEstado) {
-        estado = newEstado;
+        usoModal = newEstado;
     }
 
     return {

@@ -3,7 +3,7 @@ export async function handleFetchDocuments() {
       const response = await fetch('/api/getDocumentsByTipo');
       if (response.ok) {
         const data = await response.json();
-        console.log('Documentos con tipo "imagen":', data);
+        //console.log('Documentos con tipo "imagen":', data);
         return data
       } else {
         console.error('Error al obtener documentos.');

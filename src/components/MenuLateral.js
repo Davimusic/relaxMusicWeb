@@ -13,7 +13,7 @@ const menu = ({id}) => {
     const styleIma = {width: '6vh', height: '6vh',  marginRight: '2vw'}
 
     return (
-        <nav className='displayMenu color2 colorLetra1'>  
+        <nav className='displayMenu color2 colorLetra1' style={{border: 'none'}}>  
                 <ul className="container">
                     <li style={styleLi} className="espacioEquilatero">
                         <Imagenes style={styleIma} link='https://res.cloudinary.com/dplncudbq/image/upload/v1692318586/mias/casa_qqdrbh.png'/>

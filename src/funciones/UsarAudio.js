@@ -7,13 +7,10 @@ import { variablesGlobales } from "./VariablesGlobales";
 import { actulizarColorFondoContenido } from "./ActualizarColorFondoContenido";
 import { reubicarSeccionAudio } from './ReubicarSeccionAudio'
 import { actualizarColorFondo } from "./ActualizarColorFondo";
-import { actualizarColorFondoBotonesEdicion } from "./ActualizarColorFondoBotonesEdicion";
+//import { actualizarColorFondoBotonesEdicion } from "./ActualizarColorFondoBotonesEdicion";
 import { ActualizarModalObjeto } from "./ActualizarModalObjeto";
 
-
-let prueva = 0
 export function usarAudio(i, d) {
-    //audioToast('entrA')
     const audio = document.getElementById('audioRep');
     const arreAudiosPadre = arrePadre().getArrePadre()
     //console.log(arreAudiosPadre);
@@ -47,50 +44,41 @@ export function usarAudio(i, d) {
 
     } else if (i === 'tipoUso') {
         const ima =  document.getElementById('botonRepro3')
+        let estadoPaso = variablesGlobales().getEstado()
         const dicc = {
                 0: 'https://res.cloudinary.com/dplncudbq/image/upload/v1693363915/flecha_cjzjxx.png',
-                1: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223013/alea_q8jfvg.png',
-                2: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223037/mias/re_oyr9yt.png'
-                }; //hi
-        switch (prueva) {
-            case 0:
-                prueva = 1
+                1: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223037/mias/re_oyr9yt.png',
+                2: 'https://res.cloudinary.com/dplncudbq/image/upload/v1692223013/alea_q8jfvg.png'
+                };
+        let paso = 0         
+        switch (estadoPaso) {
+            case 'audioActual':
+                variablesGlobales().setEstado('repetir')
+                paso = 1
                 break;
-            case 1:
-                prueva = 2
+            case 'repetir':
+                variablesGlobales().setEstado('aleatorio')
+                paso = 2
                 break;
-            case 2:
-                prueva = 0
+            case 'aleatorio':
+                variablesGlobales().setEstado('audioActual')
+                paso = 0
                 break;    
         }
-        ima.srcset = dicc[prueva]
-        console.log(prueva);
-    } else if (i === 'repetir') {
-        if(variablesGlobales().getEstado() == 'repetir'){
-            variablesGlobales().setEstado('audioActual')
-        } else {
-            variablesGlobales().setEstado(i)
-        }
-    } else if(i === 'aleatorio'){
-        if(variablesGlobales().getEstado() == 'aleatorio'){
-            variablesGlobales().setEstado('audioActual')
-        } else {
-            variablesGlobales().setEstado(i)
-        }
+        ima.srcset = dicc[paso]
     } else {
         variablesGlobales().setCoor(i)
         reproducirAudio(variablesGlobales().getCoor());
     }
 
     audio.addEventListener('loadedmetadata', function() {
-        document.getElementById('input').max = audio.duration;
+        document.getElementById('rangeTime').max = audio.duration;
     });
 
     clearInterval(variablesGlobales().getIntervaloSubir()); // Detener el intervalo anterior
     variablesGlobales().setIntervaloSubir(setInterval(subir, 1000))  // Crear un nuevo intervalo
     
     actulizarColorFondoContenido(d)
-    actualizarColorFondoBotonesEdicion()
     reubicarSeccionAudio()  
     
     if(variablesGlobales().getReproducir() === 'si'){
@@ -100,7 +88,7 @@ export function usarAudio(i, d) {
     function subir(){
         let audio = document.getElementById('audioRep')
         //console.log(audio.currentTime)
-        document.getElementById('input').value=audio.currentTime
+        document.getElementById('rangeTime').value=audio.currentTime
     }
 }
 
@@ -135,7 +123,6 @@ if (typeof window !== "undefined") {
             
             reubicarSeccionAudio()
             actulizarColorFondoContenido(variablesGlobales().getCoor())
-            actualizarColorFondoBotonesEdicion()
         });
     //});
 }

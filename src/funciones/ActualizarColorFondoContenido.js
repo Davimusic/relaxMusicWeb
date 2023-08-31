@@ -14,6 +14,4 @@ export function actulizarColorFondoContenido(d) {//la d es de los botones de eid
         colorFondoSinUso = '#083fa78f'
     }
     actualizarColorFondo('secAudio', variablesGlobales().getCoor(), colorFondoEnUso, colorFondoSinUso, arreAudiosPadre.length);
-    actualizarColorFondo('botonRepro', d, '#027495', '#ffffff', 4)
-    
 }

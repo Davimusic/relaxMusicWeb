@@ -1,5 +1,7 @@
 import { audioToast } from "./AudioToast"
 import { variablesGlobales } from "./VariablesGlobales"
+import { arrePadre } from "./RetornarInfoAudios"
+
 
 let conteo = 0
 export function accionesModal(){
@@ -13,7 +15,9 @@ export function accionesModal(){
                         'https://res.cloudinary.com/dplncudbq/video/upload/v1692931660/mias/v3_qemvau.mp4']
 
     function abrirModal(event, contenido){
-        //event.stopPropagation()
+        if(event){
+            event.stopPropagation()
+        }
 
         modal.style.width = '100vw'
         modal.style.height = '100Vh'
@@ -22,21 +26,22 @@ export function accionesModal(){
         
         const vide = document.getElementById('videoModal')
         const conte = document.getElementById('contenidoModal')
+        const botonAbrirVideo = document.getElementById('botonAbrirVideo')
         
-        if (typeof contenido === "object") {
+        if (typeof contenido === "object" || contenido === 'subir') {
+            botonAbrirVideo.style.display = 'flex'
+            let contePaso = arrePadre().getArrePadre()[variablesGlobales().getCoor()]
             vide.style.display= 'none'
             conte.style.display = 'flex'
             modal.style.zIndex = '9999'
-            conte.innerHTML = inyecccionHTMLConte(contenido)
-            const img = document.getElementById('opciones');
-                        img.onclick = (event) => {
-                            accionesModal().abrirModal(event, '');
-                        };
+            conte.innerHTML = inyecccionHTMLConte(contePaso)
             conte.style.transition = '5s';
             variablesGlobales().setUsoModal('objeto')
         } else {
+            botonAbrirVideo.style.display = 'none'
             modal.style.zIndex = '10000'
             vide.style.display= 'block'
+            vide.classList.add('aperecerSuevemente')
             conte.style.display = 'none'
             modal.style.top = '50%'
             video()
@@ -45,6 +50,7 @@ export function accionesModal(){
     }
 
     function cerrarModal(){
+        botonAbrirVideo.style.display = 'none'
         modal.style.width = '0vh'
         modal.style.height = '0Vh'
         modal.style.opacity= '0'; 
@@ -87,8 +93,10 @@ export function accionesModal(){
 
 function inyecccionHTMLConte(contenido){
     return `
-    <img id='opciones' alt="" loading="lazy" width="100" height="100" decoding="async" style="width: fit-content; height: 3vh;" srcset="https://res.cloudinary.com/dplncudbq/image/upload/v1692979344/mias/opcione_kqa0uz.png">
-    <h2>${contenido.titulo}</h2>
+    <div class='espacioEquilatero' style='display: flex; width: 50vh; flex-wrap: wrap; padding: 4vh;'>
+        <h2>${contenido.titulo}</h2>
+        <h3 style='marginLeft: 5vh'>${variablesGlobales().getDuracionesAudios()[variablesGlobales().getCoor()]} min.</h3>
+    </div>
     <h3>${contenido.contenido}</h3>
     <img alt="" loading="lazy" width="100" height="100" decoding="async" style="width: 50vh; height: 50vh;" srcset="${contenido.imagenAudio}">`
 }

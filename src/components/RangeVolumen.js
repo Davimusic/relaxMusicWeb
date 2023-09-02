@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 
-const RangeInput = ({ id }) => {   
-const [value, setValue] = useState(0);
+const RangeVolumen = ({ id }) => {   
+const [value, setValue] = useState(100);
 
 function reubicar(val, id) {
     const audio = document.getElementById("audioRep");
-    if (id === "rangeTime") {
     setValue(val);
-    audio.currentTime = val;
-    } else {
-        setValue(val);
-        audio.volume = val / 100;
-        document.getElementById(id).value = val
-    }
+    audio.volume = val / 100;
+    document.getElementById(id).value = val    
 }
-
+//
 return (
         <input
             type="range"
@@ -29,4 +24,4 @@ return (
         );
 };
 
-export default RangeInput;
+export default RangeVolumen;

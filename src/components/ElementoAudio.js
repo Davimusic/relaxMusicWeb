@@ -1,14 +1,16 @@
 import { arrePadre } from '../funciones/RetornarInfoAudios';
 import { usarAudio } from '../funciones/UsarAudio';
 import Imagenes from './Img';
-import { accionesModal } from "@/funciones/AccionesModal";
 import React, { useState, useEffect } from "react";
 import { audioToast } from '@/funciones/AudioToast';
 import { handleFetchDocuments } from "@/funciones/LlamarObjetosBaseDeDatos";
+import { variablesGlobales } from '@/funciones/VariablesGlobales';
+import { segundosAFormatoHoras } from '@/funciones/SegundosAFormatoHoras';
 
 export function ElementoAudio() {
     const [arreAudiosPadre, setArreAudiosPadre] = useState([]);
     const [meGustas, setMeGustas] = useState([]);
+    const [audioDuracion, setAudioDuracion] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
 
     useEffect(() => {
@@ -21,6 +23,7 @@ export function ElementoAudio() {
                 arrePadre().setArrePadre(documents)
                 setMeGustas(Array(documents.map(document => document.meGusta)));
                 setDataLoaded(true)
+                obtenerDuraciones(documents)
                 //console.log(dataLoaded);
             } catch (error) {
                 console.error('Error al obtener documentos:', error);
@@ -29,9 +32,26 @@ export function ElementoAudio() {
         fetchDocuments();
     }, []);
 
+
+    async function obtenerDuraciones(documents) {
+        let arre = [];
+        for (let u = 0; u < documents.length; u++) {
+            const audio = new Audio(documents[u].linkAudio);
+            const metadataLoaded = new Promise((resolve) => {
+                audio.onloadedmetadata = () => resolve();
+            });
+            await metadataLoaded;  
+            //arre.push((audio.duration / 60).toFixed(1));
+            arre.push(segundosAFormatoHoras(audio.duration));
+        }
+        setAudioDuracion(arre)
+        //console.log(arre);        
+    }
+
     const accionMeGusta = (event, index) => {
         event.stopPropagation()
         let arrePaso = [...arreAudiosPadre]; 
+        //console.log(arrePaso);
         let paso = arrePaso[index]['meGusta'];
         paso = !paso;
         arrePaso[index]['meGusta'] = paso;
@@ -43,9 +63,19 @@ export function ElementoAudio() {
         setMeGustas(arreAudiosPadre.map(document => document.meGusta));
     }, [arreAudiosPadre]);
 
+    
     useEffect(() => {
         //console.log(dataLoaded);
     }, [dataLoaded]);
+
+    
+
+    useEffect(() => {
+        setAudioDuracion(audioDuracion);
+        variablesGlobales().setDuracionesAudios(audioDuracion)
+    }, [audioDuracion]);
+
+    
 
     return (
         <div id='contenedorAudios' style={{ width: "100%", height: '83vh', paddingBottom: '7vh', overflow: 'auto', scrollBehavior: 'smooth'}} className='scrollVertical color1 colorLetra1'>
@@ -56,10 +86,13 @@ export function ElementoAudio() {
             ) : (
                 arreAudiosPadre.map((item, index) => (
                     <div id={`secAudio${index}`} onClick={() => usarAudio(index, index)} key={index} style={{ width: "100%", height: '10vh', borderRadius: '0.5em', padding: '0.5vh', marginBottom: '2vh', display: "flex" }} className={`efectoFondoTransparente  ${dataLoaded ? 'aperecerSuevemente' : ''}`} >
-                        <Imagenes link={item.imagenAudio} style={{height: '9vh', width: '9vh', marginRight: '10px'}} className={'efectoGirar'} onClick={(event) => accionesModal().abrirModal(event, item)}/>
+                        <Imagenes link={item.imagenAudio} style={{height: '9vh', width: '9vh', marginRight: '10px'}} className={'efectoGirar'} />
                         <div style={{ marginLeft: '20px', height: '9vh', width: '90vw', display: 'flex' }} className='scrollVertical'>
-                        <h3>{item.titulo}</h3>
-                        <h4>{item.contenido}</h4>
+                        <div>
+                            <h3>{item.titulo}</h3>
+                            <h4>{item.contenido}</h4>
+                        </div>
+                        <h5 style={{marginLeft: '5vh'}}>{audioDuracion[index]} min.</h5>
                         </div>
                         <Imagenes id={`corazon${index}`} style={{height: '5vh', width: '5vh', marginRight: '10px', marginTop: '10px'}} onClick={(event) => accionMeGusta(event, index)} link={meGustas[index] ? 'https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png' : 'https://res.cloudinary.com/dplncudbq/image/upload/v1692318586/mias/corazon_ccetxa.png'} />
                     </div>

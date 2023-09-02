@@ -3,7 +3,8 @@ let reproducir = 'no';
 let intervaloSubir;
 let estado = 'audioActual';
 let modoPantalla = 'oscuro'; 
-let usoModal = '' 
+let usoModal = '';
+let duracionesAudios = [] 
 
 export function variablesGlobales() {
 
@@ -55,6 +56,14 @@ export function variablesGlobales() {
         usoModal = newEstado;
     }
 
+    function getDuracionesAudios() {
+        return duracionesAudios;
+    }
+
+    function setDuracionesAudios(newArray) {
+        duracionesAudios = newArray;
+    }
+    
     return {
         getCoor,
         setCoor,
@@ -67,7 +76,9 @@ export function variablesGlobales() {
         getModoPantalla,
         setModoPantalla, 
         getUsoModal, 
-        setUsoModal
+        setUsoModal,
+        getDuracionesAudios,
+        setDuracionesAudios
     };
 }
 

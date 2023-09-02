@@ -9,7 +9,6 @@ export function ActualizarModalObjeto(){
         coorEnUso = coor
         const padre =  arrePadre().getArrePadre()[coor]
         const conte = document.getElementById('contenidoModal')
-
         accionesModal().abrirModal('', padre); 
         conte.classList.remove('aperecerSuevemente');
         void conte.offsetWidth; // Forzamos un repaint, lo que reinicia la animación

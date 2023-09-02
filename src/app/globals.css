@@ -8,7 +8,7 @@ body {
 }
 
 
-h3{
+h1, h2, h3, h4, h5{
   margin: 0px;
 }
 
@@ -166,6 +166,11 @@ a {
   cursor: pointer;
 }
 
+
+.difuminado{
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
 
 
 

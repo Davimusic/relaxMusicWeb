@@ -9,6 +9,7 @@ import { reubicarSeccionAudio } from './ReubicarSeccionAudio'
 import { actualizarColorFondo } from "./ActualizarColorFondo";
 //import { actualizarColorFondoBotonesEdicion } from "./ActualizarColorFondoBotonesEdicion";
 import { ActualizarModalObjeto } from "./ActualizarModalObjeto";
+import { segundosAFormatoHoras } from "./SegundosAFormatoHoras";
 
 export function usarAudio(i, d) {
     const audio = document.getElementById('audioRep');
@@ -79,19 +80,20 @@ export function usarAudio(i, d) {
     variablesGlobales().setIntervaloSubir(setInterval(subir, 1000))  // Crear un nuevo intervalo
     
     actulizarColorFondoContenido(d)
-    reubicarSeccionAudio()  
+    reubicarSeccionAudio()
     
     if(variablesGlobales().getReproducir() === 'si'){
         ActualizarModalObjeto()
     }
     
     function subir(){
-        let audio = document.getElementById('audioRep')
+        const audio = document.getElementById('audioRep')
+        const tiempoAudio = document.getElementById('tiempoAudio')
         //console.log(audio.currentTime)
         document.getElementById('rangeTime').value=audio.currentTime
+        tiempoAudio.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1)) + ' min.'
     }
 }
-
 
 if (typeof window !== "undefined") {
     //window.addEventListener("load", (event) => {

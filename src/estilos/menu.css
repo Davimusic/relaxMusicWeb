@@ -91,7 +91,7 @@ ul.menu li a:hover {
 
 .menuSuperior {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
     align-items: center;
     border-bottom: 1px solid black;
     padding-inline-start: 10px; /* Añade algún espacio interno para que el texto no esté pegado al borde */

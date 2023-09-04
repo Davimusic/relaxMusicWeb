@@ -16,6 +16,6 @@ export function reproducirAudio(coor) {
     
     audio.play();
     variablesGlobales().setReproducir('si')
-    ActualizarModalObjeto()
+    //ActualizarModalObjeto()
     botonPlay.srcset = 'https://res.cloudinary.com/dplncudbq/image/upload/v1656171086/mias/pause_vae5ou.png';
 }

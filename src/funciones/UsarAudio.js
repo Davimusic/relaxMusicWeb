@@ -82,9 +82,9 @@ export function usarAudio(i, d) {
     actulizarColorFondoContenido(d)
     reubicarSeccionAudio()
     
-    if(variablesGlobales().getReproducir() === 'si'){
+    /*if(variablesGlobales().getReproducir() === 'si'){
         ActualizarModalObjeto()
-    }
+    }*/
     
     function subir(){
         if(variablesGlobales().getReproducir() == 'si'){

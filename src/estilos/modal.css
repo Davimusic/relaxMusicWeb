@@ -33,13 +33,10 @@
 }
 
 .contenidoModal{
-    padding: 5vw;
+    padding: 3vw;
     width: 100vw;
     height: 100vh;
-    flex-direction: column;
-    display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .botonVideos{

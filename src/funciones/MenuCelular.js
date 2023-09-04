@@ -1,5 +1,5 @@
 export function menuCelular(acc){
-    let displayMenu = document.querySelectorAll('.displayMenu')
+    const displayMenu = document.querySelectorAll('.displayMenu')
     if(acc === 'mostrar'){
         displayMenu.forEach(function(elemento) {
             elemento.style.height = '83vh'; 
@@ -16,6 +16,7 @@ export function menuCelular(acc){
             hijo.style.display = "block";
         });
     } else {
+        
         displayMenu.forEach(function(elemento) {
             elemento.style.height = '0vh'; 
             elemento.style.width = '0vw'; 
@@ -27,4 +28,8 @@ export function menuCelular(acc){
             hijo.style.display = "none";
         });
     }
+    const container = document.querySelectorAll(".container");
+    container.forEach((hijo) => {
+        hijo.style.border = "none";
+    });
 }

@@ -77,7 +77,7 @@ export function usarAudio(i, d) {
     });
 
     clearInterval(variablesGlobales().getIntervaloSubir()); // Detener el intervalo anterior
-    variablesGlobales().setIntervaloSubir(setInterval(subir, 1000))  // Crear un nuevo intervalo
+    variablesGlobales().setIntervaloSubir(setInterval(subir, 250))  // Crear un nuevo intervalo
     
     actulizarColorFondoContenido(d)
     reubicarSeccionAudio()
@@ -87,11 +87,17 @@ export function usarAudio(i, d) {
     }
     
     function subir(){
-        const audio = document.getElementById('audioRep')
-        const tiempoAudio = document.getElementById('tiempoAudio')
-        //console.log(audio.currentTime)
-        document.getElementById('rangeTime').value=audio.currentTime
-        tiempoAudio.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1)) + ' min.'
+        if(variablesGlobales().getReproducir() == 'si'){
+            const audio = document.getElementById('audioRep')
+            const tiempoAudio = document.getElementById('tiempoAudio')
+            //console.log(audio.currentTime)
+            document.getElementById('rangeTime').value=audio.currentTime
+            tiempoAudio.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1)) + ' min.'
+            const tiempoAudio2 =  document.getElementById('tiempoAudio2');
+            if(tiempoAudio2 != null){
+                tiempoAudio2.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1)) + ' min.'
+            }
+        }
     }
 }
 

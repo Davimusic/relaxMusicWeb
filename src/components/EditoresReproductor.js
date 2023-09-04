@@ -11,21 +11,7 @@ import { audioToast } from "@/funciones/AudioToast";
 import RangeVolumen from "./RangeVolumen";
 
 const editoresReproductor = ({id}) => {
-    const [meGustasColeccion, setMeGustasColeccion] = useState([]);
     const styleImages = {marginLeft: '20px', height: '6vh', width: '6vh'}   
-
-    const accionMeGustaColeccion = () => {
-        if(meGustasColeccion === true){
-            setMeGustasColeccion(false)
-        } else {
-            setMeGustasColeccion(true)
-        }
-    };
-
-    useEffect(() => {
-        setMeGustasColeccion(meGustasColeccion);
-        audioToast(`me gusta la coleccion: ${meGustasColeccion}`)
-    }, [meGustasColeccion]);
 
     return (
         <div style={{background: 'white', borderTop: '1px solid', borderColor: 'rgb(0, 0, 0)', width: '100vw', position: 'fixed', bottom: '0', zIndex: '9999'}}>
@@ -37,9 +23,6 @@ const editoresReproductor = ({id}) => {
                 <Imagenes  onClick={() => usarAudio('play', 1)}      id='botonRepro1'  className={'seleccionable'} style={styleImages} link='https://res.cloudinary.com/dplncudbq/image/upload/v1656171086/mias/play_qqpavo.png' />
                 <Imagenes  onClick={() => usarAudio('adelante', 0)}  id='botonRepro0'  className={'seleccionable'} style={styleImages} link='https://res.cloudinary.com/dplncudbq/image/upload/v1676133410/mias/adelante_ztqvpx.png' />
                 <Imagenes  onClick={() => usarAudio('tipoUso', 3)}   id='botonRepro3'  className={'seleccionable'} style={styleImages} link='https://res.cloudinary.com/dplncudbq/image/upload/v1693363915/flecha_cjzjxx.png' />
-                <Imagenes  onClick={(event) => accionesModal().abrirModal(event, 'subir')}   id='botonRepro4'  className={'seleccionable'} style={styleImages} link='https://res.cloudinary.com/dplncudbq/image/upload/v1693583167/subir_pinj91.png' />
-                <Imagenes id={`corazonColeccion`} style={styleImages} onClick={(event) => accionMeGustaColeccion()} link={meGustasColeccion ? 'https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png' : 'https://res.cloudinary.com/dplncudbq/image/upload/v1692318586/mias/corazon_ccetxa.png'} />
-                <h4 id='tiempoAudio' style={{color: 'black', width: '9vw', paddingTop: '1vh'}}>00:00 min</h4>
                 <audio id='audioRep' preload = "metadata" controls   style={{display: 'none'}}>
                     Your browser does not support the <code>audio</code> element.
                 </audio>           

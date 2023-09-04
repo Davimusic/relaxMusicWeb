@@ -2,7 +2,6 @@ import { audioToast } from "./AudioToast"
 import { variablesGlobales } from "./VariablesGlobales"
 import { arrePadre } from "./RetornarInfoAudios"
 
-
 let conteo = 0
 export function accionesModal(){
 
@@ -26,19 +25,20 @@ export function accionesModal(){
         
         const vide = document.getElementById('videoModal')
         const conte = document.getElementById('contenidoModal')
-        const botonAbrirVideo = document.getElementById('botonAbrirVideo')
         
         if (typeof contenido === "object" || contenido === 'subir') {
-            botonAbrirVideo.style.display = 'flex'
             let contePaso = arrePadre().getArrePadre()[variablesGlobales().getCoor()]
             vide.style.display= 'none'
             conte.style.display = 'flex'
             modal.style.zIndex = '9999'
             conte.innerHTML = inyecccionHTMLConte(contePaso)
+            const botonAbrirVideo = document.getElementById('botonAbrirVideo');
+            botonAbrirVideo.addEventListener('click', (event) => {
+            accionesModal().abrirModal(event, '');
+            });
             conte.style.transition = '5s';
             variablesGlobales().setUsoModal('objeto')
         } else {
-            botonAbrirVideo.style.display = 'none'
             modal.style.zIndex = '10000'
             vide.style.display= 'block'
             vide.classList.add('aperecerSuevemente')
@@ -50,7 +50,6 @@ export function accionesModal(){
     }
 
     function cerrarModal(){
-        botonAbrirVideo.style.display = 'none'
         modal.style.width = '0vh'
         modal.style.height = '0Vh'
         modal.style.opacity= '0'; 
@@ -92,11 +91,40 @@ export function accionesModal(){
 }
 
 function inyecccionHTMLConte(contenido){
-    return `
-    <div class='espacioEquilatero' style='display: flex; width: 50vh; flex-wrap: wrap; padding: 4vh;'>
-        <h2>${contenido.titulo}</h2>
-        <h3 style='marginLeft: 5vh'>${variablesGlobales().getDuracionesAudios()[variablesGlobales().getCoor()]} min.</h3>
-    </div>
-    <h3>${contenido.contenido}</h3>
-    <img alt="" loading="lazy" width="100" height="100" decoding="async" style="width: 50vh; height: 50vh;" srcset="${contenido.imagenAudio}">`
+    const anchoVentana = document.documentElement.clientWidth;
+    const altoVentana = document.documentElement.clientHeight;
+    const paddingHijos = 'style = "padding-top: 4vh"'
+    let medidaImagen = ''
+    if(anchoVentana > altoVentana){
+        medidaImagen =  'style="width: 80vh; height: 80vh;"'
+    } else {
+        medidaImagen =  'style="width: 80vw; height: 80vw;"'
+    }
+    let imagen = `<img alt="" loading="lazy" width="100" height="100" decoding="async" ${medidaImagen} srcset="${contenido.imagenAudio}">`
+    let conte = `<div style='display: block; padding: 4vh;'>
+                        <h2 ${paddingHijos}>${contenido.titulo}</h2>
+                        <h3 ${paddingHijos}>${variablesGlobales().getDuracionesAudios()[variablesGlobales().getCoor()]} min.</h3>
+                        <h3 ${paddingHijos}>${contenido.contenido}</h3>
+                        <div ${paddingHijos}>
+                            <img id='corazonModal'    style='marginLeft: 20px; height: 6vh; width: 6vh;'  srcset='https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png'>
+                        </div>
+                        <div ${paddingHijos}>
+                            <img id='botonAbrirVideo' style='marginLeft: 20px; height: 6vh; width: 6vh;' srcset='https://res.cloudinary.com/dplncudbq/image/upload/v1693680649/video_u9gl6j.png'>
+                        </div>
+                        <div ${paddingHijos}>
+                            <img id='botonAbrirVieo' style='marginLeft: 20px; height: 6vh; width: 6vh;' srcset='https://res.cloudinary.com/dplncudbq/image/upload/v1693680649/imagen_fmzeqo.png'>
+                        </div>
+                    </div>
+                    <h4 id='tiempoAudio2' style={{color: 'black', width: '9vw', paddingTop: '1vh'}}>00:00 min</h4>`
+    if(anchoVentana > altoVentana){
+        return `
+            <div style='display: flex;'>
+                ${imagen}
+                ${conte}
+            </div>`
+    } else {
+        console.log(contenido);
+        document.getElementById('modal').style.backgroundImage = `url(${contenido.imagenAudio})`
+        return conte
+    }                
 }

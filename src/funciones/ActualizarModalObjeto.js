@@ -1,6 +1,7 @@
 import { variablesGlobales } from "./VariablesGlobales";
 import { arrePadre } from "./RetornarInfoAudios";
 import { accionesModal } from "./AccionesModal";
+import Modal from "@/components/Modal";
 
 let coorEnUso = 555// nùmero loco para que inicie sin problemas
 export function ActualizarModalObjeto(){

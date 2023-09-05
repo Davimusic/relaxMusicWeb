@@ -82,9 +82,13 @@ export function usarAudio(i, d) {
     actulizarColorFondoContenido(d)
     reubicarSeccionAudio()
     
-    /*if(variablesGlobales().getReproducir() === 'si'){
-        ActualizarModalObjeto()
-    }*/
+    if(variablesGlobales().getReproducir() === 'si'){
+        //ActualizarModalObjeto()
+        audio.addEventListener('loadedmetadata', function () {
+            document.getElementById('totalDuracionAudio').innerHTML = segundosAFormatoHoras(audio.duration.toFixed(1));
+        });
+    }
+
     
     function subir(){
         if(variablesGlobales().getReproducir() == 'si'){
@@ -92,10 +96,10 @@ export function usarAudio(i, d) {
             const tiempoAudio = document.getElementById('tiempoAudio')
             //console.log(audio.currentTime)
             document.getElementById('rangeTime').value=audio.currentTime
-            tiempoAudio.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1)) + ' min.'
+            tiempoAudio.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1))
             const tiempoAudio2 =  document.getElementById('tiempoAudio2');
             if(tiempoAudio2 != null){
-                tiempoAudio2.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1)) + ' min.'
+                tiempoAudio2.innerHTML = segundosAFormatoHoras(audio.currentTime.toFixed(1))
             }
         }
     }

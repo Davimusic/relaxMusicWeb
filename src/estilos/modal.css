@@ -18,7 +18,7 @@
     top: 10vh;
     left: 10vh;
     transform: translate(-50%, -50%);
-    z-index:99999;
+    z-index:100001;
 }
 
 .videoModal{
@@ -48,4 +48,18 @@
     right: 8vh; 
     transform: translate(-50%, -50%); 
     z-index:99999
+}
+
+.fondoImagen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000; /* Para que esté detrás del contenido */
+    filter: blur(10px); /* Agrega un efecto de desenfoque */
+    object-fit: cover; /* Ajusta la imagen para que cubra toda la pantalla */
+    background-repeat: no-repeat; /* Evita que se repita la imagen */
+    background-size: cover; /* Ajusta el tamaño de fondo */
+    opacity: 0.5; /* Controla la opacidad de la imagen de fondo */
 }

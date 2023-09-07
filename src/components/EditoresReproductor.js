@@ -28,7 +28,7 @@ const editoresReproductor = ({id}) => {
     const styleImages = {height: '6vh', width: '6vh'}   
 
     return (
-        <div style={{background: 'white', borderTop: '1px solid', borderColor: 'rgb(0, 0, 0)', width: '100vw', position: 'fixed', bottom: '0', zIndex: '9999'}}>
+        <div style={{background: 'white', borderTop: '1px solid', borderColor: 'rgb(0, 0, 0)', width: '100vw', position: 'fixed', bottom: '0', zIndex: '998'}}>
             <div style={{display: "flex", height: 'min-content', margin: '0.5vh', flexWrap: 'wrap'}} className='espacioEquilatero'>
                 <Imagenes id={`corazonColeccion`} style={styleImages} onClick={(event) => accionMeGustaColeccion()} link={meGustasColeccion ? 'https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png' : 'https://res.cloudinary.com/dplncudbq/image/upload/v1692318586/mias/corazon_ccetxa.png'} />
                 <Imagenes  onClick={() => usarAudio('atras', 2)}     id='botonRepro2'  className={'seleccionable'} style={styleImages} link='https://res.cloudinary.com/dplncudbq/image/upload/v1676133407/mias/atras_lfyntg.png' />

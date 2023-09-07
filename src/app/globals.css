@@ -261,9 +261,15 @@ a {
 @keyframes aperecerSuevemente {
   0% {
     opacity: 0;
+    background-color: black; /* Cambia el fondo a negro al inicio */
+  }
+  50% {
+    opacity: 0.5;
+    background-color: black; /* Mantén el fondo negro a la mitad de la animación */
   }
   100% {
     opacity: 1;
+    background-color: transparent; /* Restaura el fondo al color deseado al final */
   }
 }
 
@@ -271,11 +277,9 @@ a {
   animation: aperecerSuevemente 2s ease; /* Aquí agregamos la duración y la función de curva */
 }
 
-
 .seleccionable{
   cursor: pointer;
 }
-
 
 .difuminado{
   -webkit-backdrop-filter: blur(20px);

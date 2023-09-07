@@ -1,6 +1,7 @@
 import {arrePadre} from './RetornarInfoAudios'
 import {variablesGlobales} from './VariablesGlobales'
 import { ActualizarModalObjeto } from './ActualizarModalObjeto';
+import { Modal } from '@/components/Modal';
 
 
 export function reproducirAudio(coor) {
@@ -17,5 +18,10 @@ export function reproducirAudio(coor) {
     audio.play();
     variablesGlobales().setReproducir('si')
     //ActualizarModalObjeto()
+    if(variablesGlobales().getUsoModal() != ''){
+        const botonRepro4 = document.getElementById('botonRepro4');
+        botonRepro4.click()
+    }
+
     botonPlay.srcset = 'https://res.cloudinary.com/dplncudbq/image/upload/v1656171086/mias/pause_vae5ou.png';
 }

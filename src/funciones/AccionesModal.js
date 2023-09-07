@@ -1,4 +1,4 @@
-import { audioToast } from "./AudioToast"
+/*import { audioToast } from "./AudioToast"
 import { variablesGlobales } from "./VariablesGlobales"
 import { arrePadre } from "./RetornarInfoAudios"
 
@@ -164,4 +164,4 @@ function inyecccionHTMLConte(contenido){
         document.getElementById('modal').style.backgroundImage = `url(${contenido.imagenAudio})`
         return conte
     }                
-}
+}*/

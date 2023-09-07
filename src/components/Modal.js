@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Imagenes from "./Img";
 //import { accionesModal } from "@/funciones/AccionesModal";
 import '../estilos/modal.css'
+import '../app/globals.css'
 import { variablesGlobales } from "@/funciones/VariablesGlobales";
 import { arrePadre } from "@/funciones/RetornarInfoAudios";
 
@@ -18,22 +19,30 @@ let linksImagenes =  ['https://res.cloudinary.com/dplncudbq/image/upload/v165765
 'https://res.cloudinary.com/dplncudbq/image/upload/v1657563375/mias/h1_j5kvru.jpg']
 
 let conteo = 0, conteoImagenes = 0
-
+let paso = 'cerrar'
 export function Modal(){
     const [estadoModal, setEstadoModal] = useState('');
     const [imgFondo, setImgFondo] = useState('https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png');
+    const [animar, setAnimar] = useState(false);
 
-    function mostrar(event, contenido){ 
-        setEstadoModal(contenido)
+    function mostrar(event, contenido){
+        if((contenido === 'cerrar' && paso === 'subir') || (contenido === 'cerrar' && paso === 'cerrar')){
+            setEstadoModal('')
+        } else {
+            setEstadoModal(contenido)
+        }
+        paso = contenido
         setImgFondo(arrePadre().getArrePadre()[variablesGlobales().getCoor()].imagenAudio)
+        setAnimar(true);
+
+        setTimeout(() => {
+            setAnimar(false);
+        }, 2000); 
+
         if(event){
             event.stopPropagation()
         }
     }
-
-    useEffect(() => {
-        console.log(imgFondo);
-    }, [imgFondo]);
 
     useEffect(() => {
         console.log(estadoModal);
@@ -42,36 +51,39 @@ export function Modal(){
             video()
         } else if(estadoModal === 'imagen'){
             imagen()
-        }
+        } 
     }, [estadoModal]);
     
     const styleImages = {height: '6vh', width: '6vh'}
     const espacio = {padding: '2vh'}
     return (
-        <div>
-            <div style={{ position: 'fixed', right: '15px', bottom: '90px', zIndex: '10000', background: 'white', borderRadius: '50%' }}>
-                    <Imagenes
+        <div className= {`${estadoModal != '' ? 'contenedorAbsolutoModal' : ''}`}>
+            
+                <div className={`aperecerSuevemente botonAbrirModalFlotante ${estadoModal != '' ? 'esconderBotonAbrirModalFlotante' : ''}`}>
+                    <Imagenes 
                     onClick={(event) => mostrar(event, 'subir')}
                     id='botonRepro4'
                     className={'seleccionable'}
                     style={{height: '6vh', width: '6vh'} }
                     link='https://res.cloudinary.com/dplncudbq/image/upload/v1693583167/subir_pinj91.png'
                     />
-            </div>
-            {estadoModal !== '' && (
-            <div id='modal' className="modalPadre">
+                </div>
+            
+            {estadoModal != '' && (
+            <div id='modal' className={`modalPadre color1 ${animar ? 'aperecerSuevemente' : ''}`}>
                 <header>
                     <Imagenes className='botonCerrar'
                         link='https://res.cloudinary.com/dplncudbq/image/upload/v1692415538/mias/x_dzlrbc.png'
-                        onClick={(event) => mostrar(event, '')}
+                        onClick={(event) => mostrar(event, 'cerrar')}
                     />
                 </header>
-                <div className="objetoAudio" style={{zIndex: '11'}}>
+                {estadoModal != 'video' && estadoModal != 'imagen' &&(
+                    <div className={`objetoAudio`}>
                         <Imagenes id='fondoModalObjeto'  className='fondoImagen'  link={imgFondo}/>
-                        <div style={{zIndex: '11'}}>
-                            <Imagenes id='corazonMo'  className='imagenAudio'  link='https://res.cloudinary.com/dplncudbq/image/upload/v1692978370/mias/f2_pm0tas.png'/>
+                        <div className='hijosObjetoAudio'>
+                            <Imagenes id='corazonMo'  className='imagAudio'  link={imgFondo}/>
                         </div>
-                        <div style={{zIndex: '11'}}>
+                        <div className='hijosObjetoAudio'>
                             <h2 style={espacio}>titulo titulo titulo titulo titulo</h2>
                             <h3 style={espacio}>conte conte conte conte</h3>
                             <div style={espacio}>
@@ -84,12 +96,13 @@ export function Modal(){
                                 <Imagenes id='botonAbrirImagenes' style={styleImages} onClick={(event) => mostrar(event, 'imagen')} link='https://res.cloudinary.com/dplncudbq/image/upload/v1693680649/imagen_fmzeqo.png'/>
                             </div>
                         </div>
-                </div>
+                    </div>
+                )} 
                 {estadoModal === 'video' && (
-                        <video id='videoModal' className="videoModal aperecerSuevemente" src="" controls muted></video>
+                    <video id='videoModal' className="videoModal " src="" controls muted></video>
                 )}
                 {estadoModal === 'imagen' && (
-                        <div id='contenidoModal' className="color1 contenidoModal colorLetra1"></div>
+                    <div id='contenidoModal' className={`color1 contenidoModal colorLetra1`} ></div>
                 )}
             </div>
             )}
@@ -106,9 +119,13 @@ async function imagen(){
     contenidoModal.addEventListener("click", () => {
         contenidoModal.requestFullscreen();
     });
-    document.getElementById('modal').style.zIndex = '10001';
-    contenidoModal.innerHTML = `<img id='imagenesDinamicas' class='aperecerSuevemente'  style='height: 100vh; width: 100vw; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);'  srcset='${linksImagenes[conteoImagenes]}'>`
-    await sleep(5000);
+    //document.getElementById('modal').style.zIndex = '10001';
+    
+    contenidoModal.innerHTML = `<img id='imagenesDinamicas' class=''  style='height: 100vh; width: 100vw; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);'  srcset='${linksImagenes[conteoImagenes]}'>`
+    contenidoModal.classList.add('aperecerSuevemente')
+    await sleep(2000);
+    contenidoModal.classList.remove('aperecerSuevemente')
+    await sleep(3000);
     if(conteoImagenes + 1 <= linksImagenes.length - 1){
         conteoImagenes += 1
     } else {

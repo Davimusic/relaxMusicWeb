@@ -65,7 +65,7 @@
     }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1400px) {
     .hijosObjetoAudio{
         display: flex;
         flex-wrap: wrap;

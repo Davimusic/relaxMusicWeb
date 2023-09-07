@@ -1,4 +1,4 @@
-let audioEnUso = false, audioPausado = false;
+/*let audioEnUso = false, audioPausado = false;
 let punteroAudio, punteroBarraDeAudio;
 let arreAudios = []
 let IdseccionAudioPlayer = 0, cantidadComponentesAudios = 0
@@ -136,4 +136,4 @@ function cronometro(){
         console.log(punteroBarraDeAudio.value);
         setTimeout(cronometro, 1000)
     }
-}
+}*/

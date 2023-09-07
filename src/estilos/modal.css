@@ -19,8 +19,8 @@
 
 .botonAbrirModalFlotante{
     position: fixed;
-    right: 15px;
-    bottom: 90px;
+    right: 2vw;
+    bottom: 12vh;
     z-index: 999;
     background: white;
     border-radius: 50%
@@ -43,6 +43,7 @@
 
 .hijosObjetoAudio{
     z-index:11;
+    background-color: rgba(0, 0, 0, 0.479);
     display: block;
 }
 
@@ -65,10 +66,15 @@
     }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1300px) {
     .hijosObjetoAudio{
+        margin-top: 2vh;
+        border-radius: 0.7em;
         display: flex;
         flex-wrap: wrap;
+    }
+    .imagAudio{
+        border-radius: 0.7em;
     }
 }
 

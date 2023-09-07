@@ -59,7 +59,7 @@ export function Modal(){
     return (
         <div className= {`${estadoModal != '' ? 'contenedorAbsolutoModal' : ''}`}>
             
-                <div className={`aperecerSuevemente botonAbrirModalFlotante ${estadoModal != '' ? 'esconderBotonAbrirModalFlotante' : ''}`}>
+                <div className={`botonAbrirModalFlotante ${estadoModal != '' ? 'esconderBotonAbrirModalFlotante' : 'aperecerSuevemente'}`}>
                     <Imagenes 
                     onClick={(event) => mostrar(event, 'subir')}
                     id='botonRepro4'

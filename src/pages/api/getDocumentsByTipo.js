@@ -1,8 +1,8 @@
-
-
 import { connectToDatabase } from './connectToDatabase';
+import { variablesGlobales } from '@/funciones/VariablesGlobales';
 
-export default async function getDocumentsByTipo(req, res) {
+
+/*export default async function getDocumentsByTipo(req, res) {
     const db = await connectToDatabase();
   const collection = db.collection('primerRelaxProject');
 
@@ -14,4 +14,36 @@ export default async function getDocumentsByTipo(req, res) {
     console.error('Error obteniendo los documentos:', error);
     throw error;
   }
+}*/
+
+export default async function getDocumentsByTipo(req, res) {
+  const db = await connectToDatabase();
+  const collection = db.collection('primerRelaxProject');
+
+  let llave = process.env.FILTRAR_DB
+  let valor = variablesGlobales().getFiltrarDB()[llave]
+
+  if(llave === 'tags'){
+    try {
+      const documentsCursor = await collection.find({
+        tags: {
+          $elemMatch: { $eq: valor }
+        }
+      });
+  
+      const documentsArray = await documentsCursor.toArray();
+      const responseObj = {
+        documentos: documentsArray,
+        llave: llave,
+        otroDato: valor,
+        // Agrega más propiedades según sea necesario
+      };
+      return res.status(200).json(responseObj);
+    } catch (error) {
+      console.error('Error obteniendo los documentos:', error);
+      throw error;
+    }
+  } else {
+    alert('la llave no es tags')
   }
+}

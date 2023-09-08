@@ -13,6 +13,29 @@ export function ElementoAudio() {
     const [audioDuracion, setAudioDuracion] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
 
+    function buscarInformacionDB(event){
+            event.stopPropagation()
+            console.log('entra');
+            console.log(variablesGlobales().getFiltrarDB());
+            setDataLoaded(false)
+            // Aquí realizas la llamada para obtener los documentos desde la base de datos
+            const fetchDocuments = async () => {
+                try {
+                    const documents = await handleFetchDocuments();
+                    //console.log(documents);
+                    setArreAudiosPadre(documents);
+                    arrePadre().setArrePadre(documents)
+                    setMeGustas(Array(documents.map(document => document.meGusta)));
+                    setDataLoaded(true)
+                    obtenerDuraciones(documents)
+                    //console.log(dataLoaded);
+                } catch (error) {
+                    console.error('Error al obtener documentos:', error);
+                }
+            };
+            fetchDocuments();
+    }
+
     useEffect(() => {
         // Aquí realizas la llamada para obtener los documentos desde la base de datos
         const fetchDocuments = async () => {
@@ -31,6 +54,7 @@ export function ElementoAudio() {
         };
         fetchDocuments();
     }, []);
+    
 
 
     async function obtenerDuraciones(documents) {
@@ -95,6 +119,7 @@ export function ElementoAudio() {
                         <h5 style={{marginLeft: '5vh'}}>{audioDuracion[index]} min.</h5>
                         </div>
                         <Imagenes id={`corazon${index}`} style={{height: '5vh', width: '5vh', marginRight: '10px', marginTop: '10px'}} onClick={(event) => accionMeGusta(event, index)} link={meGustas[index] ? 'https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png' : 'https://res.cloudinary.com/dplncudbq/image/upload/v1692318586/mias/corazon_ccetxa.png'} />
+                        <button onClick={(event) => buscarInformacionDB(event)}> click</button>
                     </div>
                 ))
             )}

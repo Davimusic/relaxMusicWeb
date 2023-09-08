@@ -18,11 +18,11 @@ export function paletaDeColores() {
     }
 
     function actualizarBackground(idColor, newColor) {
-        let color = document.querySelectorAll(idColor);
+        /*let color = document.querySelectorAll(idColor);
         color.forEach(elemento => {
             elemento.style.transition= '1s';
             elemento.style.backgroundColor = newColor;
-        });
+        });*/
     }
 
     function actualizarColor(idColor, newColor) {

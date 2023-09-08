@@ -5,6 +5,7 @@ let estado = 'audioActual';
 let modoPantalla = 'oscuro'; 
 let usoModal = '';
 let duracionesAudios = [] 
+let filtrarDB = {'tags': 'estudiar'}
 
 export function variablesGlobales() {
 
@@ -63,6 +64,15 @@ export function variablesGlobales() {
     function setDuracionesAudios(newArray) {
         duracionesAudios = newArray;
     }
+
+    function getFiltrarDB() {
+        return filtrarDB;
+    }
+
+    function setFiltrarDB(newValue) {
+        filtrarDB = newValue;
+    }
+
     
     return {
         getCoor,
@@ -78,7 +88,9 @@ export function variablesGlobales() {
         getUsoModal, 
         setUsoModal,
         getDuracionesAudios,
-        setDuracionesAudios
+        setDuracionesAudios,
+        getFiltrarDB, 
+        setFiltrarDB
     };
 }
 

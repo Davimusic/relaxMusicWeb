@@ -11,7 +11,7 @@ import { audioToast } from "@/funciones/AudioToast";
 import RangeVolumen from "./RangeVolumen";
 
 const editoresReproductor = ({id}) => {
-    const [meGustasColeccion, setMeGustasColeccion] = useState([]);
+    const [meGustasColeccion, setMeGustasColeccion] = useState(false);
 
     const accionMeGustaColeccion = () => {
         if(meGustasColeccion === true){
@@ -22,11 +22,10 @@ const editoresReproductor = ({id}) => {
     };
 
     useEffect(() => {
-        setMeGustasColeccion(meGustasColeccion);
-        audioToast(`me gusta la coleccion: ${meGustasColeccion}`)
+        //audioToast(`me gusta la coleccion: ${meGustasColeccion}`)
     }, [meGustasColeccion]);
-    const styleImages = {height: '6vh', width: '6vh'}   
 
+    const styleImages = {height: '6vh', width: '6vh'}   
     return (
         <div style={{background: 'white', borderTop: '1px solid', borderColor: 'rgb(0, 0, 0)', width: '100vw', position: 'fixed', bottom: '0', zIndex: '998'}}>
             <div style={{display: "flex", height: 'min-content', margin: '0.5vh', flexWrap: 'wrap'}} className='espacioEquilatero'>

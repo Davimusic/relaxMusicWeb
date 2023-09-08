@@ -23,6 +23,8 @@ let paso = 'cerrar'
 export function Modal(){
     const [estadoModal, setEstadoModal] = useState('');
     const [imgFondo, setImgFondo] = useState('https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png');
+    const [titulo, setTitulo] = useState('titulo');
+    const [contenido, setContenido] = useState('contenido');
     const [animar, setAnimar] = useState(false);
 
     function mostrar(event, contenido){
@@ -31,8 +33,13 @@ export function Modal(){
         } else {
             setEstadoModal(contenido)
         }
+
         paso = contenido
-        setImgFondo(arrePadre().getArrePadre()[variablesGlobales().getCoor()].imagenAudio)
+
+        const info = arrePadre().getArrePadre()[variablesGlobales().getCoor()]
+        setImgFondo(info.imagenAudio)
+        setTitulo(info.titulo)
+        setContenido(info.contenido)
         setAnimar(true);
 
         setTimeout(() => {
@@ -84,8 +91,8 @@ export function Modal(){
                             <Imagenes id='corazonMo'  className='imagAudio'  link={imgFondo}/>
                         </div>
                         <div className='hijosObjetoAudio'>
-                            <h2 style={espacio}>titulo titulo titulo titulo titulo</h2>
-                            <h3 style={espacio}>conte conte conte conte</h3>
+                            <h2 style={espacio}>{titulo}</h2>
+                            <h3 style={espacio}>{contenido}</h3>
                             <div style={espacio}>
                                 <Imagenes id='corazonModal'  style={styleImages}  link='https://res.cloudinary.com/dplncudbq/image/upload/v1692753447/mias/cora_l5a4yp.png'/>
                             </div>
@@ -99,7 +106,7 @@ export function Modal(){
                     </div>
                 )} 
                 {estadoModal === 'video' && (
-                    <video id='videoModal' className="videoModal " src="" controls muted></video>
+                    <video id='videoModal' className="videoModal " src="" controls="false" muted></video>
                 )}
                 {estadoModal === 'imagen' && (
                     <div id='contenidoModal' className={`color1 contenidoModal colorLetra1`} ></div>
@@ -118,6 +125,8 @@ async function imagen(){
     const contenidoModal = document.getElementById('contenidoModal')
     contenidoModal.addEventListener("click", () => {
         contenidoModal.requestFullscreen();
+        contenidoModal.mozRequestFullScreen();
+        contenidoModal.webkitRequestFullscreen();
     });
     //document.getElementById('modal').style.zIndex = '10001';
     
@@ -162,5 +171,7 @@ function video() {
         //audioToast(conteo)
     });        
 }
+
+
 
 

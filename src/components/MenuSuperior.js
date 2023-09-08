@@ -10,8 +10,6 @@ import { variablesGlobales } from '@/funciones/VariablesGlobales';
 import { handleFetchDocuments } from '@/funciones/LlamarObjetosBaseDeDatos';
 
 export function MenuSuperior(){
-    dotenv.config();
-
     function filtrar(valor){
         variablesGlobales().setFiltrarDB({'tags': valor})
         //console.log(variablesGlobales().getFiltrarDB());

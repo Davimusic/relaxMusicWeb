@@ -20,8 +20,9 @@ export default async function getDocumentsByTipo(req, res) {
   const db = await connectToDatabase();
   const collection = db.collection('primerRelaxProject');
 
-  let llave = process.env.FILTRAR_DB
-  let valor = variablesGlobales().getFiltrarDB()[llave]
+  let filtro = variablesGlobales().getFiltrarDB()
+  let llave = Object.keys(filtro)[0]
+  let valor = filtro[llave]
 
   if(llave === 'tags'){
     try {

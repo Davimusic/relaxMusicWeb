@@ -6,12 +6,16 @@ import { audioToast } from '@/funciones/AudioToast';
 import { handleFetchDocuments } from "@/funciones/LlamarObjetosBaseDeDatos";
 import { variablesGlobales } from '@/funciones/VariablesGlobales';
 import { segundosAFormatoHoras } from '@/funciones/SegundosAFormatoHoras';
+import { introDB } from '@/funciones/introDB';
+import Select from './Select';
+import '../estilos/select.css'
 
 export function ElementoAudio() {
     const [arreAudiosPadre, setArreAudiosPadre] = useState([]);
     const [meGustas, setMeGustas] = useState([]);
     const [audioDuracion, setAudioDuracion] = useState([]);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [etiquetas, setEtiquetas] = useState([])
 
     function buscarInformacionDB(event){
             event.stopPropagation()
@@ -22,7 +26,7 @@ export function ElementoAudio() {
             const fetchDocuments = async () => {
                 try {
                     const documents = await handleFetchDocuments();
-                    //console.log(documents);
+                    console.log(documents);
                     setArreAudiosPadre(documents);
                     arrePadre().setArrePadre(documents)
                     setMeGustas(Array(documents.map(document => document.meGusta)));
@@ -47,6 +51,8 @@ export function ElementoAudio() {
                 setMeGustas(Array(documents.map(document => document.meGusta)));
                 setDataLoaded(true)
                 obtenerDuraciones(documents)
+                const etiquetasUnicas = [...new Set(documents.flatMap(doc => doc.tags))];
+                setEtiquetas(etiquetasUnicas)
                 //console.log(dataLoaded);
             } catch (error) {
                 console.error('Error al obtener documentos:', error);
@@ -83,6 +89,17 @@ export function ElementoAudio() {
         audioToast(`Actualizado estado me gusta a audio: ${arrePaso[index]['titulo']}`)
     };
 
+    async function mi(value){
+        variablesGlobales().setFiltrarDB({'tags': value})
+        setDataLoaded(false)
+        const arre = await introDB()
+        setArreAudiosPadre(arre);
+        arrePadre().setArrePadre(arre)
+        setMeGustas(Array(arre.map(arr => arre.meGusta)));
+        setDataLoaded(true)
+        obtenerDuraciones(arre)
+    }
+
     useEffect(() => {
         setMeGustas(arreAudiosPadre.map(document => document.meGusta));
     }, [arreAudiosPadre]);
@@ -103,6 +120,7 @@ export function ElementoAudio() {
 
     return (
         <div id='contenedorAudios' style={{ width: "100%", height: '83vh', paddingBottom: '7vh', overflow: 'auto', scrollBehavior: 'smooth'}} className='scrollVertical color1 colorLetra1'>
+            <Select value={variablesGlobales().getFiltrarDB()['tags']} className={'aperecerSuevemente selectFiltro color1'} arre={etiquetas} onChange={(event) => mi(event.target.value)}/>
             {!dataLoaded ? (
                 <div className="loading-container aperecerSuevemente color1">
                 <div className="loading"></div>

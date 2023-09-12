@@ -48,3 +48,4 @@ export default async function getDocumentsByTipo(req, res) {
     alert('la llave no es tags')
   }
 }
+
